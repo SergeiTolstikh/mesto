@@ -1,0 +1,17 @@
+.page {
+    background: rgba(0, 0, 0, 1);
+    padding: 0 48px 0 48px;
+}
+
+@media screen and (max-width: 976px) {
+    .page {
+        padding-left: calc(27px + (48 - 27) * ((100vw - 768px) / 208));
+        padding-right: calc(27px + (48 - 27) * ((100vw - 768px) / 208));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .page {
+        padding: 0 27px 0 27px;
+    }
+}
