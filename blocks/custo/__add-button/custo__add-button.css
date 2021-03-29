@@ -1,0 +1,6 @@
+.custo__add-button {
+    grid-column: 3/4;
+    grid-row: 2/3;
+    justify-self: end;
+    align-self: center;
+}

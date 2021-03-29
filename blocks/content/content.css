@@ -1,0 +1,16 @@
+.content {
+    padding: 0 48px 0 48px;
+}
+
+@media screen and (max-width: 976px) {
+    .content {
+        padding-left: calc(27px + (48 - 27) * ((100vw - 768px) / 208));
+        padding-right: calc(27px + (48 - 27) * ((100vw - 768px) / 208));
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        padding: 0 27px 0 27px;
+    }
+}

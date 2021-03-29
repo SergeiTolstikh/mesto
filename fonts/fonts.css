@@ -2,6 +2,16 @@
     font-family: 'Inter';
     font-style:  normal;
     font-weight: 500;
-    src: url(./fonts/Inter-Medium.woff)  format('woff');
-    src: url(./fonts/Inter-Medium.woff2)  format('woff2');
+    src: url(./fonts/Inter-Medium.ttf) format("ttf");
+    src: url(./fonts/Inter-Medium.woff) format('woff');
+    src: url(./fonts/Inter-Medium.woff2) format('woff2');
+  }
+
+  @font-face {
+    font-family: 'Inter';
+    font-style:  normal;
+    font-weight: 400;
+    src: url(./fonts/Inter-Regular.ttf) format("ttf");
+    src: url(./fonts/Inter-Regular.woff) format('woff');
+    src: url(./fonts/Inter-Regular.woff2) format('woff2');
   }
