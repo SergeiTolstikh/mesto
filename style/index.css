@@ -6,3 +6,9 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 @import url(../blocks/header/__line/header__line.css);
+
+@import url(../blocks/custo/custo.css);
+@import url(../blocks/custo/__image/custo__image.css);
+@import url(../blocks/custo/__title/custo__title.css);
+@import url(../blocks/custo/__subtitle/custo__subtitle.css);
+@import url(../blocks/custo/__add-button/custo__add-button.css);

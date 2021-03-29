@@ -1,0 +1,22 @@
+.custo__image {
+    /*margin: auto;*/
+    max-width: 168.75px;
+    max-height: 127.5px;
+    border-radius: 100%;
+    grid-row: 1/4;
+}
+
+
+/*
+
+@media screen and (max-width: 768px) {
+    .custo__image {
+        margin-left: calc(0px - (27 - 0) * ((100vw - 768px) / 343));
+    }
+}
+
+@media screen and (max-width: 424px) {
+    .custo__image {
+        margin: auto;
+    }
+}*/
