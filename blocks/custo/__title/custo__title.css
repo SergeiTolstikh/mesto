@@ -10,3 +10,10 @@
     grid-column: 2/3;
     align-self: start;
 }
+
+@media screen and (max-width: 977px) {
+    .custo__title {
+        font-size: calc(33.7px + (42 - 33.7) * ((100vw - 768px) / 209));
+        line-height: calc(38.5px + (48 - 38.5) * ((100vw - 768px) / 209));
+    }
+}

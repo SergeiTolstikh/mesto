@@ -1,3 +1,10 @@
 .custo__edit-button {
     margin: 0 0 0 18px;
 }
+
+@media screen and (max-width: 977px) {
+    .custo__edit-button {
+        max-width: calc(19.25px + (24 - 19.25) * ((100vw - 768px) / 209));
+        margin-left: calc(14.44px + (18 - 14.44) * ((100vw - 768px) / 209));
+    }
+}

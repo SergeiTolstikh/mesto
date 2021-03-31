@@ -12,3 +12,10 @@
     grid-column: 2/3;
     align-self: end;
 }
+
+@media screen and (max-width: 977px) {
+    .custo__subtitle {
+        font-size: calc(14.44px + (18 - 14.44) * ((100vw - 768px) / 209));
+        line-height: calc(17.65px + (22 - 17.65) * ((100vw - 768px) / 209));
+    }
+}
