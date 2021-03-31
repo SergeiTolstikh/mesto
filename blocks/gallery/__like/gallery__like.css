@@ -18,6 +18,18 @@
 
 @media screen and (max-width: 977px) {
     .gallery__like {
-        font-size: calc(26.4px + (33 - 26.4) * ((100vw - 768px) / 209));
+        font-size: calc(22px + (33 - 22) * ((100vw - 636px) / 341));
+    }
+}
+
+@media screen and (max-width: 635px) {
+    .gallery__like {
+        font-size: calc(22px + (33 - 22) * ((100vw - 426px) / 209));
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .gallery__like {
+        font-size: calc(33px + (45 - 33) * ((100vw - 320px) / 105));
     }
 }
