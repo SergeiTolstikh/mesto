@@ -6,6 +6,11 @@
     grid-template-rows: 1fr 73px 1fr;
 }
 
+@media screen and (max-width: 977px) {
+    .custo {
+        grid-template-rows: 1fr calc(58.57px + (73 - 58.57) * ((100vw - 768px) / 209)) 1fr;
+    }
+}
 /*
 @media screen and (max-width: 988px) {
 .custo {

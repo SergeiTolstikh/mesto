@@ -4,3 +4,9 @@
     justify-self: end;
     align-self: center;
 }
+
+@media screen and (max-width: 977px) {
+    .custo__add-button {
+        max-width: calc(120.355px + (150 - 120.355) * ((100vw - 768px) / 209));
+    }
+}
