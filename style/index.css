@@ -14,3 +14,10 @@
 @import url(../blocks/custo/__subtitle/custo__subtitle.css);
 @import url(../blocks/custo/__add-button/custo__add-button.css);
 @import url(../blocks/custo/__edit-button/custo__edit-button.css);
+
+@import url(../blocks/gallery/gallery.css);
+@import url(../blocks/gallery/__card/gallery__card.css);
+@import url(../blocks/gallery/__image/gallery__image.css);
+@import url(../blocks/gallery/__text/gallery__text.css);
+@import url(../blocks/gallery/__like/gallery__like.css);
+

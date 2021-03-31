@@ -1,0 +1,40 @@
+/*.gallery__text {
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 21px 15px 23px 21px;
+}*/
+
+.gallery__text {
+    font-family: Inter;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding: 25px 0 25px 21px;
+   
+   
+}
+
+@media screen and (max-width: 977px) {
+    .gallery__text {
+        font-size: calc(19px + (24 - 19) * ((100vw - 768px) / 209));
+        line-height: calc(23px + (29 - 23) * ((100vw - 768px) / 209));
+        padding-top: calc(20px + (25 - 20) * ((100vw - 768px) / 209));
+        padding-bottom: calc(20px + (25 - 20) * ((100vw - 768px) / 209));
+        padding-left: calc(16.8px + (21 - 16.8) * ((100vw - 768px) / 209));
+
+    }
+}

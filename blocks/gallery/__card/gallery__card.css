@@ -1,0 +1,24 @@
+/*.gallery__card {
+    margin: 0;
+    max-height: 361px;
+    background-color: white;
+    border-radius: 10px 10px 10px 10px;
+    overflow: hidden;
+    justify-self: stretch;
+  }*/
+
+  .gallery__card {
+    margin: 0;
+    max-height: 361px;
+    background-color: white;
+    border-radius: 10px 10px 10px 10px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 1fr 62px;
+  }
+
+  @media screen and (max-width: 977px) {
+    .gallery__card {
+        grid-template-columns: 1fr calc(49.75px + (62 - 49.75) * ((100vw - 768px) / 209));
+    }
+}

@@ -1,0 +1,23 @@
+/*.gallery__like {
+    font-family: Inter;
+    font-size: 19px;
+    font-style: inherit;
+    font-weight: 100;
+    grid-column: -1/-2;
+    align-self: center;
+}
+*/
+
+.gallery__like {
+    
+    font-size: 33px;
+    grid-column: -1/-2;
+    align-self: center;
+    margin: auto;
+}
+
+@media screen and (max-width: 977px) {
+    .gallery__like {
+        font-size: calc(26.4px + (33 - 26.4) * ((100vw - 768px) / 209));
+    }
+}
