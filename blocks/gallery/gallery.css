@@ -11,12 +11,13 @@
 @media screen and (max-width: 635px) {
     .gallery {
         grid-template-columns: 1fr 1fr;
-        padding: 36px 0 48px 0;
+        padding: 36px 0 calc(48px + (67 - 48) * ((100vw - 425px) / 210)) 0;
     }
 }
 
 @media screen and (max-width: 425px) {
     .gallery {
         grid-template-columns: 1fr;
+        padding-bottom: 48px;
     }
 }
