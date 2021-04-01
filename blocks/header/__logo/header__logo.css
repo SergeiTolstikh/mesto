@@ -1,18 +1,16 @@
 .header__logo {
     max-width: 142px;
-    /*padding: 0 48px 0 48px;*/
 }
 
 @media screen and (max-width: 768px) {
     .header__logo {
         max-width: calc(103.74px + (142 - 103.74) * ((100vw - 425px) / 343));
-        /*margin-left: calc(0px - (27 - 0) * ((100vw - 768px) / 343));*/
     }
 }
 
 @media screen and (max-width: 425px) {
     .header__logo {
         max-width: 103.74px;
-        /*margin-left: 27px;*/
+        padding-left: 27px;
     }
 }
