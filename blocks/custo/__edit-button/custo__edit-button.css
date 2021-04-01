@@ -2,9 +2,22 @@
     margin: 0 0 0 18px;
 }
 
+.custo__edit-button:hover {
+    opacity: 0.7;
+    transition: 0.3s;
+}
+
 @media screen and (max-width: 977px) {
     .custo__edit-button {
-        max-width: calc(19.25px + (24 - 19.25) * ((100vw - 768px) / 209));
-        margin-left: calc(14.44px + (18 - 14.44) * ((100vw - 768px) / 209));
+        max-width: calc(18px + (24 - 18) * ((100vw - 635px) / 342));
+        margin-left: calc(10px + (18 - 10) * ((100vw - 635px) / 342));
     }
 }
+
+@media screen and (max-width: 635px) {
+    .custo__edit-button {
+        max-width: 18px;
+        margin-left: 10px;
+    }
+}
+
