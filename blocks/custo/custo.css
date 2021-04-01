@@ -15,13 +15,13 @@
 @media screen and (max-width: 635px) {
     .custo {
         grid-template-columns: 1fr 120px minmax(259px, 1fr) 1fr;
-        grid-template-rows: 1fr 55px 1fr 122px;
+        grid-template-rows: 1fr 55px 1fr 86px;
     }
 }
 
 @media screen and (max-width: 425px) {
     .custo {
         grid-template-columns: 1fr;
-        grid-template-rows: 1fr 55px 122px;
+        grid-template-rows: 1fr 55px 86px;
     }
 }
