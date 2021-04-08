@@ -1,0 +1,33 @@
+.form__button {
+    width: 358px;
+    height: 50px;
+    font-size: 14px;
+    line-height: 17px;
+    border: 0;
+    border-radius: 2px;
+    padding: 0;
+    margin: 47px 36px 37px;
+    cursor: pointer;
+    transition: opacity .4s;
+    color: white;
+    font-family: inherit;
+  }
+  
+  .form__button:hover {
+    opacity: .8;
+  }
+  
+  
+  /* Замена цвета внешней линии при фокусе кнопки */
+  .form__button:focus {
+    outline-color:#ffd900;
+  }
+  
+  .form__button[type="submit"] {
+    background-color: #000;
+  }
+  
+  
+  .form__button[type="reset"] {
+    background-color: #ea3a3a;
+  }

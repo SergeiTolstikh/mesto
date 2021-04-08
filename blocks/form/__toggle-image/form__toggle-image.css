@@ -1,0 +1,10 @@
+.form__toggle-image {
+    position: absolute;
+    right: -48.28px;
+    top: -48.28px;
+}
+
+.form__toggle-image:hover {
+    opacity: 0.6;
+    transform: rotate(45deg);
+}
