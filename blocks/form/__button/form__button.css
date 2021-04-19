@@ -31,3 +31,23 @@
   .form__button[type="reset"] {
     background-color: #ea3a3a;
   }
+
+  @media screen and (max-width: 468px) {
+    .form__button {
+        width: calc(323.13px + (358 - 323.13) * ((100vw - 425px) / 43));
+        height: calc(46px + (50 - 46) * ((100vw - 425px) / 43));
+        margin-left: calc(32px + (36 - 32) * ((100vw - 425px) / 43));
+        margin-right: calc(32px + (36 - 32) * ((100vw - 425px) / 43));
+    }
+}
+
+@media screen and (max-width: 425px) {
+  .form__button {
+      width: calc(238px + (323.13 - 238) * ((100vw - 320px) / 105));
+      height: 46px;
+      margin-top: calc(45px + (47 - 45) * ((100vw - 320px) / 105));
+      margin-bottom: calc(25px + (37 - 25) * ((100vw - 320px) / 105));
+      margin-left: calc(22px + (32 - 22) * ((100vw - 320px) / 105));
+      margin-right: calc(22px + (32 - 22) * ((100vw - 320px) / 105));
+  }
+}

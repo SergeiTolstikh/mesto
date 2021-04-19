@@ -1,0 +1,19 @@
+.form {
+    position: absolute;
+    margin-left: 220px;
+    margin-top: 36px;
+}
+
+@media screen and (max-width: 976px) {
+    .form {
+        margin-left: calc(0px + (220 - 0) * ((100vw - 468px) / 508));
+        margin-top: calc(0px + (36 - 0) * ((100vw - 468px) / 508));
+    }
+}
+
+@media screen and (max-width: 468px) {
+    .form {
+        margin-left: 0;
+        margin-top: 0;
+    }
+}

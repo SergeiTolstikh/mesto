@@ -8,3 +8,18 @@
     opacity: 0.6;
     transform: rotate(45deg);
 }
+
+@media screen and (max-width: 550px) {
+    .form__toggle-image {
+        right: calc(-13.28px + (-48.28 + 13.28) * ((100vw - 468px) / 82));
+        top: calc(-58.28px + (-48.28 + 58.28) * ((100vw - 468px) / 82));
+        width: calc(36.76px + (58 - 36.76) * ((100vw - 320px) / 230));
+    }
+}
+
+@media screen and (max-width: 468px) {
+    .form__toggle-image {
+        right: calc(0px + (-13.28 + 0) * ((100vw - 320px) / 148));
+        top: calc(-48.28px + (-58.28 + 48.28) * ((100vw - 320px) / 148));
+    }
+}

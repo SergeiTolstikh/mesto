@@ -4,3 +4,10 @@
     padding: 0;
     border: 0;
 }
+
+@media screen and (max-width: 468px) {
+    .form__input-container {
+        width: calc(323.13px + (358 - 323.13) * ((100vw - 425px) / 43));
+        
+    }
+}

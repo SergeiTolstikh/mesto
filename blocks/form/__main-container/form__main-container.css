@@ -4,3 +4,17 @@
     background-color: #fff;
     border-radius: 10px;
   }
+
+  @media screen and (max-width: 468px) {
+    .form__main-container {
+        width: calc(387px + (430 - 387) * ((100vw - 425px) / 43));
+        height: calc(322px + (330 - 322) * ((100vw - 425px) / 43));
+    }
+}
+
+@media screen and (max-width: 425px) {
+  .form__main-container {
+      width: calc(282px + (387 - 282) * ((100vw - 320px) / 105));
+      height: 322px;
+  }
+}

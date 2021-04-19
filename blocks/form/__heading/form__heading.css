@@ -10,3 +10,13 @@
     letter-spacing: 0em;
     text-align: left;
 }
+
+@media screen and (max-width: 468px) {
+    .form__heading {
+        max-width: calc(238px + (358 - 238) * ((100vw - 320px) / 148));
+        font-size: calc(18px + (24 - 18) * ((100vw - 320px) / 148));
+        line-height: calc(22px + (29 - 22) * ((100vw - 320px) / 148));
+        margin-top:  calc(25px + (34 - 25) * ((100vw - 320px) / 148));
+        margin-bottom: calc(75px + (38 - 75) * ((100vw - 320px) / 148));
+    }
+}

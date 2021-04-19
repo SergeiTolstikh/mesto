@@ -15,7 +15,7 @@
 @import url(../blocks/custo/__add-button/custo__add-button.css);
 @import url(../blocks/custo/__edit-button/custo__edit-button.css);
 
-@import url(../blocks/form/__container/form__container.css);
+@import url(../blocks/form/form.css);
 @import url(../blocks/form/__admin/form__admin.css);
 @import url(../blocks/form/__toggle/form__toggle.css);
 @import url(../blocks/form/__toggle-image/form__toggle-image.css);
