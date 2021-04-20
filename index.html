@@ -25,36 +25,7 @@
 
                 <img src="./image/custo.jpg" class="custo__image">
 
-                <h1 class="custo__title">Жак-Ив Кусто<img src="./image/Edit Button.svg" class="custo__edit-button"></h1>
-                <div class="form">
-               
-
-                    <form class="form__admin">
-                
-                        <div class="form__toggle">
-                            <img class="form__toggle-image" src="./image/Close Icon.svg">
-                        </div>
-    
-                        <div class="form__main-container">
-    
-                          <h2 class="form__heading">Редактировать профиль</h2>
-    
-                          <fieldset class="form__input-container form__input-container_ctrl_texts">
-                            <input type="text" class="form__item form__item_el_heading" placeholder="ФИО"></input>
-                            <hr class="form__line">
-                            <input type="text" class="form__item form__item_el_subheading" placeholder="статус"></input>
-                            <hr class="form__line">
-                          </fieldset>
-    
-                          <fieldset class="form__handlers">
-                            <input type="submit" class="form__button">
-                          </fieldset> 
-    
-                        </div>     
-    
-                    </form>
-    
-                </div>
+                <h1 class="custo__title">Жак-Ив Кусто<button title="Редактировать профиль" class="custo__edit-button"></button></h1>
                 <p class="custo__subtitle">Исследователь океана</p>
                 <!--<img src="./image/Add Button.svg" class="custo__add-button">-->
                 <div class="custo__add-button"></div>
@@ -113,7 +84,35 @@
 
         </footer>
 
+        <div class="popup">
+            
+            <form class="popup__container">
+
+                <div class="popup__toggle">
+                    <img class="popup__toggle-image popup__toggle-image_close" src="./image/Close Icon.svg">
+                </div>
+
+                  <h2 class="popup__heading">Редактировать профиль</h2>
+
+                  <fieldset class="popup__input-container popup__input-container_ctrl_texts">
+                    <input type="text" class="popup__item popup__item_el_heading" placeholder="ФИО"></input>
+                    <hr class="popup__line">
+                    <input type="text" class="popup__item popup__item_el_subheading" placeholder="статус"></input>
+                    <hr class="popup__line">
+                  </fieldset>
+
+                  <fieldset class="popup__handlers">
+                    <input type="submit" class="popup__button">
+                  </fieldset> 
+
+            </form>     
+
+        
+
+        </div>
+
         
     </div>
+    <script src="./script.js"></script>
 </body>
 </html>

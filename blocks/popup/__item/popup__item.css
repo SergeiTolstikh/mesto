@@ -1,4 +1,4 @@
-.form__item {
+.popup__item {
     width: 100%;
     margin: 0;
 
@@ -19,28 +19,28 @@
     margin-bottom: 15px;
 }*/
 
-.form__item::placeholder {
+.popup__item::placeholder {
     font-size: 14px;
     font-family: inherit;
     line-height: 20px;
     color: #bcbcc4;
 } 
 
-.form__item::-webkit-input-placeholder {
+.popup__item::-webkit-input-placeholder {
     font-size: 14px;
     font-family: inherit;
     line-height: 20px;
     color: #bcbcc4;
 }
 
-.form__item::-moz-placeholder {
+.popup__item::-moz-placeholder {
     font-size: 14px;
     font-family: inherit;
     line-height: 20px;
     color: #bcbcc4;
 }
 
-.form__item::-ms-input-placeholder {
+.popup__item::-ms-input-placeholder {
     font-size: 14px;
     font-family: inherit;
     line-height: 20px;

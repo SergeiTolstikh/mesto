@@ -1,16 +1,16 @@
-.form__toggle-image {
+.popup__toggle-image {
     position: absolute;
     right: -48.28px;
     top: -48.28px;
 }
 
-.form__toggle-image:hover {
+.popup__toggle-image:hover {
     opacity: 0.6;
     transform: rotate(45deg);
 }
 
 @media screen and (max-width: 550px) {
-    .form__toggle-image {
+    .popup__toggle-image {
         right: calc(-13.28px + (-48.28 + 13.28) * ((100vw - 468px) / 82));
         top: calc(-58.28px + (-48.28 + 58.28) * ((100vw - 468px) / 82));
         width: calc(36.76px + (58 - 36.76) * ((100vw - 320px) / 230));
@@ -18,8 +18,16 @@
 }
 
 @media screen and (max-width: 468px) {
-    .form__toggle-image {
+    .popup__toggle-image {
         right: calc(0px + (-13.28 + 0) * ((100vw - 320px) / 148));
         top: calc(-48.28px + (-58.28 + 48.28) * ((100vw - 320px) / 148));
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .popup__toggle-image {
+        right: 0;
+        top: -48.28px;
+        width: 36.76px;
     }
 }
