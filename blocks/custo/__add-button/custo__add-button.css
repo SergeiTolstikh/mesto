@@ -1,6 +1,10 @@
 .custo__add-button {
     background-image: url(../../../image/Add\ Button.svg);
-    background-size: contain;
+    background-size: 22px;
+    background-color: transparent;
+    background-position: 50%;
+    border: 2px solid #fff;
+    border-radius: 2px;
     background-repeat: no-repeat;
     width: 150px;
     height: 50px;
@@ -19,14 +23,13 @@
     .custo__add-button {
         width: calc(99px + (150 - 99) * ((100vw - 636px) / 341));
         height: calc(33px + (50 - 33) * ((100vw - 636px) / 341));
+        background-size: calc(16px + (22 - 16) * ((100vw - 636px) / 341));
     }
 }
 
 @media screen and (max-width: 635px) {
     .custo__add-button {
-        background-image: url(../../../image/Add\ Button_long.svg);
-        background-size: contain;
-        background-repeat: no-repeat;
+        background-size: 16px;
         grid-column: 1/5;
         grid-row: 4/5;
         width: 282px;
