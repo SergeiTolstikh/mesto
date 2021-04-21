@@ -1,35 +1,18 @@
-/*.gallery__like {
-    font-family: Inter;
-    font-size: 19px;
-    font-style: inherit;
-    font-weight: 100;
-    grid-column: -1/-2;
-    align-self: center;
-}
-*/
-
 .gallery__like {
-    
-    font-size: 33px;
+    background-image: url(../../../image/gallery__like__hole.svg);
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 0px;
+    width: 22px;
+    height: 19px;
     grid-column: -1/-2;
     align-self: center;
     margin: auto;
+    outline: none;
 }
 
-@media screen and (max-width: 977px) {
-    .gallery__like {
-        font-size: calc(22px + (33 - 22) * ((100vw - 636px) / 341));
-    }
-}
-
-@media screen and (max-width: 635px) {
-    .gallery__like {
-        font-size: calc(22px + (33 - 22) * ((100vw - 426px) / 209));
-    }
-}
-
-@media screen and (max-width: 425px) {
-    .gallery__like {
-        font-size: calc(33px + (45 - 33) * ((100vw - 320px) / 105));
-    }
+.gallery__like:hover {
+    opacity: 0.5;
+    transition: 0.3s;
 }

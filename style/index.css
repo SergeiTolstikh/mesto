@@ -32,6 +32,7 @@
 @import url(../blocks/gallery/__image/gallery__image.css);
 @import url(../blocks/gallery/__text/gallery__text.css);
 @import url(../blocks/gallery/__like/gallery__like.css);
+@import url(../blocks/gallery/__like/_on/gallery__like_on.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__author/footer__author.css);

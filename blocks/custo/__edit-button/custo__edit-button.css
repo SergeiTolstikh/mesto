@@ -8,8 +8,9 @@
     width: 24px;
     height: 24px;
     align-self: center;
-
-    margin: 0 0 0 18px;
+    margin: 0 0 18px 18px;
+    grid-column: 3/4;
+    grid-row: 2/3;
 }
 
 .custo__edit-button:hover {
@@ -30,5 +31,12 @@
         width: 18px;
         height: 18px;
         margin-left: 10px;
+        grid-column: 4/5;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .custo__edit-button {
+        grid-column: 2/3;
     }
 }

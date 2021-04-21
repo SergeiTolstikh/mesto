@@ -1,0 +1,7 @@
+.gallery__like_on {
+    background-image: url(../../../../image/gallery__like_on.svg);
+}
+
+.gallery__like_on:hover {
+    opacity: 1;
+}

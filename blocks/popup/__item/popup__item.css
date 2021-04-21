@@ -12,12 +12,8 @@
 
     
     font-family: inherit;
-    /*border-bottom: 1px solid #000;*/
 }
 
-/*.form__item:first-of-type {
-    margin-bottom: 15px;
-}*/
 
 .popup__item::placeholder {
     font-size: 14px;

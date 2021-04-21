@@ -2,7 +2,7 @@
     margin: auto;
     max-width: 880px;
     display: grid;
-    grid-template-columns: 120px minmax(282px, 360.375px) 1fr;
+    grid-template-columns: 120px auto auto 1fr;
     grid-template-rows: 1fr 73px 1fr;
 }
 
@@ -14,14 +14,14 @@
 
 @media screen and (max-width: 635px) {
     .custo {
-        grid-template-columns: 1fr 120px minmax(241px, 1fr) 1fr;
+        grid-template-columns: 1fr auto auto auto 1fr;
         grid-template-rows: 1fr 55px 1fr 86px;
     }
 }
 
 @media screen and (max-width: 425px) {
     .custo {
-        grid-template-columns: 1fr;
+        grid-template-columns: auto calc(46.875px + (99.375 - 46.875) * ((100vw - 320px) / 105));
         grid-template-rows: 1fr 55px 86px;
     }
 }
