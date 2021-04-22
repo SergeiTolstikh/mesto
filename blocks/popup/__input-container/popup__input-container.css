@@ -7,7 +7,6 @@
 
 @media screen and (max-width: 468px) {
     .popup__input-container {
-        width: calc(323.13px + (358 - 323.13) * ((100vw - 425px) / 43));
-        
+        width: calc(323.13px + (358 - 323.13) * ((100vw - 425px) / 43));        
     }
 }

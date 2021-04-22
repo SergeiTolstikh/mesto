@@ -52,11 +52,8 @@ closeButton.addEventListener('click', closepopup);
 
 //лайк\/
 let likeButton = document.querySelector('.gallery__like');
-function Like() {
+function Like () {
     likeButton.classList.add('gallery__like_on');
 }
 
 likeButton.addEventListener('click', Like);
-
-
-//console.log(profile.textContent);
