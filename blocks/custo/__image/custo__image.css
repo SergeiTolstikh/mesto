@@ -6,8 +6,7 @@
 }
 
 @media screen and (max-width:635px) {
-    .custo__image {
-        
+    .custo__image {   
         grid-column: 2/3;
         grid-row: 1/4;               
     }

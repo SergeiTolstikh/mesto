@@ -85,30 +85,27 @@
 
         </footer>
 
+
         <div class="popup">
             
             <form class="popup__container">
 
-                <div class="popup__toggle">
-                    <img class="popup__toggle-image popup__toggle-image_close" src="./image/Close Icon.svg">
-                </div>
+                  <button type="button" class="popup__close" title="Закрыть форму без сохранения"></button>
 
-                  <h2 class="popup__heading">Редактировать профиль</h2>
+                  <h2 class="popup__title">Редактировать профиль</h2>
 
-                  <fieldset class="popup__input-container popup__input-container_ctrl_texts">
-                    <input type="text" class="popup__item popup__item_el_heading" placeholder="ФИО"></input>
+                  <fieldset class="popup__input-container">
+                    <input type="text" class="popup__item popup__item_name" placeholder="Имя"></input>
                     <hr class="popup__line">
-                    <input type="text" class="popup__item popup__item_el_subheading" placeholder="статус"></input>
+                    <input type="text" class="popup__item popup__item_aboutmyself" placeholder="О себе"></input>
                     <hr class="popup__line">
                   </fieldset>
 
-                  <fieldset class="popup__handlers">
-                    <input type="submit" class="popup__button">
-                  </fieldset> 
+                  
+                    <button type="submit" class="popup__button-sbmt" title="Сохранить изменения">Сохранить</button>
+                  
 
-            </form>     
-
-        
+            </form>
 
         </div>
 
