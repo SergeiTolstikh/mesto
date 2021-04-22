@@ -14,7 +14,6 @@
         <header class="header">
             
             <img src="./image/__logo.svg" class="header__logo">
-            <!--<img src="./image/Line.svg" class="header__line"> -->
             <hr class="header__line">
             
         </header>
@@ -28,7 +27,6 @@
                 <h1 class="custo__title">Жак-Ив Кусто</h1>
                 <button title="Редактировать профиль" class="custo__edit-button"></button>
                 <p class="custo__subtitle">Исследователь океана</p>
-                <!--<img src="./image/Add Button.svg" class="custo__add-button">-->
                 <button title="Добавить место" class="custo__add-button"></button>
                 
             </section>
@@ -37,40 +35,40 @@
 
             <section class="gallery">
 
-                <figure class="gallery__card">
+                <div class="gallery__card">
                     <img src="./image/karachaevsk.jpg" class="gallery__image" alt="Карачаевск">
                     <figcaption class="gallery__text">Карачаевск</figcaption>
-                    <button class="gallery__like" title="Поставить нравиться"></button>
-                </figure>
+                    <button type="button" class="gallery__like" title="Нравиться"></button>
+                </div>
 
                 <figure class="gallery__card">
                     <img src="./image/gora_elbrus.jpg" class="gallery__image" alt="Гора Эльбрус">
                     <figcaption class="gallery__text">Гора Эльбрус</figcaption>
-                    <button class="gallery__like" title="Поставить нравиться"></button>
+                    <button class="gallery__like" title="Нравиться"></button>
                 </figure>
 
                 <figure class="gallery__card">
                     <img src="./image/dombai.jpg" class="gallery__image" alt="Домбай">
                     <figcaption class="gallery__text">Домбай</figcaption>
-                    <button class="gallery__like" title="Поставить нравиться"></button>
+                    <button class="gallery__like" title="Нравиться"></button>
                 </figure>
                 
                 <figure class="gallery__card">
                     <img src="./image/karachaevsk.jpg" class="gallery__image" alt="Карачаевск">
                     <figcaption class="gallery__text">Карачаевск</figcaption>
-                    <button class="gallery__like" title="Поставить нравиться"></button>
+                    <button class="gallery__like" title="Нравиться"></button>
                 </figure>
 
                 <figure class="gallery__card">
                     <img src="./image/gora_elbrus.jpg" class="gallery__image" alt="Гора Эльбрус">
                     <figcaption class="gallery__text">Гора Эльбрус</figcaption>
-                    <button class="gallery__like" title="Поставить нравиться"></button>
+                    <button class="gallery__like" title="Нравиться"></button>
                 </figure>
 
                 <figure class="gallery__card">
                     <img src="./image/dombai.jpg" class="gallery__image" alt="Домбай">
                     <figcaption class="gallery__text">Домбай</figcaption>
-                    <button class="gallery__like" title="Поставить нравиться"></button>
+                    <button class="gallery__like" title="Нравиться"></button>
                 </figure>
 
             </section>
@@ -90,19 +88,18 @@
             
             <form class="popup__container">
 
-                  <button type="button" class="popup__close" title="Закрыть форму без сохранения"></button>
+                <button type="button" class="popup__close" title="Закрыть форму без сохранения"></button>
 
-                  <h2 class="popup__title">Редактировать профиль</h2>
+                <h2 class="popup__title">Редактировать профиль</h2>
 
-                  <fieldset class="popup__input-container">
-                    <input type="text" class="popup__item popup__item_name" placeholder="Имя"></input>
-                    <hr class="popup__line">
-                    <input type="text" class="popup__item popup__item_aboutmyself" placeholder="О себе"></input>
-                    <hr class="popup__line">
-                  </fieldset>
+                <fieldset class="popup__input-container">
+                  <input type="text" class="popup__item popup__item_name" placeholder="Имя"></input>
+                  <hr class="popup__line">
+                  <input type="text" class="popup__item popup__item_aboutmyself" placeholder="О себе"></input>
+                  <hr class="popup__line">
+                </fieldset>
 
-                  
-                    <button type="submit" class="popup__button-sbmt" title="Сохранить изменения">Сохранить</button>
+                <button type="submit" class="popup__button-sbmt" title="Сохранить изменения">Сохранить</button>
                   
 
             </form>
