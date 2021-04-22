@@ -17,7 +17,6 @@
     opacity: .8;
   }
   
-  
   /* Замена цвета внешней линии при фокусе кнопки */
   .popup__button-sbmt:focus {
     outline-color:#ffd900;
@@ -26,7 +25,6 @@
   .popup__button-sbmt[type="submit"] {
     background-color: #000;
   }
-  
   
   .popup__button-sbmt[type="reset"] {
     background-color: #ea3a3a;
