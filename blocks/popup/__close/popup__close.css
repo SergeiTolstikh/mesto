@@ -6,20 +6,22 @@
     border: none;
     width: 58px;
     height: 58px;
-    position: absolute;
-    right: -48.28px;
-    top: -48.28px;
+    grid-column: 3/4;
+    grid-row: 1/2;
+    padding: 0;
+    margin-left: 25px;
+    margin-top: -50px;
 }
 
 .popup__close:hover {
     opacity: 0.6;
-    transition: 0.2s;
+    transition: 0.3s;
 }
 
 @media screen and (max-width: 550px) {
     .popup__close {
-        right: calc(-13.28px + (-48.28 + 13.28) * ((100vw - 468px) / 82));
-        top: calc(-58.28px + (-48.28 + 58.28) * ((100vw - 468px) / 82));
+        margin-left: calc(-18px + (25 + 18) * ((100vw - 468px) / 82));
+        margin-top: calc(-58px + (-50 + 58) * ((100vw - 468px) / 82));
         width: calc(36.76px + (58 - 36.76) * ((100vw - 320px) / 230));
         height: calc(36.76px + (58 - 36.76) * ((100vw - 320px) / 230));
     }
@@ -27,15 +29,7 @@
 
 @media screen and (max-width: 468px) {
     .popup__close {
-        right: calc(0px + (-13.28 + 0) * ((100vw - 320px) / 148));
-        top: calc(-48.28px + (-58.28 + 48.28) * ((100vw - 320px) / 148));
-    }
-}
-
-@media screen and (max-width: 320px) {
-    .popup__close {
-        right: 0;
-        top: -48.28px;
-        width: 36.76px;
+        margin-left: -18px;
+        margin-top: calc(-50px + (-58 + 50) * ((100vw - 320px) / 148));
     }
 }

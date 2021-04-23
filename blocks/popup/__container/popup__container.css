@@ -1,29 +1,16 @@
 .popup__container {
-    position: fixed;
-    margin: auto;
-    top: 197px;
-    width: 430px;
-    height: 330px;
-    background-color: #fff;
-    border-radius: 10px;
-  }
-
-  @media screen and (max-width: 768px) {
-    .popup__container {
-        top: calc(125px + (197 - 125) * ((100vw - 320px) / 448));
-    }
+  margin-left: 19px;
+  margin-right: 19px;
+  background-color: #fff;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 36px minmax(100px, 358px) 36px;
+  grid-template-rows: 104px auto auto;
 }
 
-  @media screen and (max-width: 468px) {
-    .popup__container {
-        width: calc(387px + (430 - 387) * ((100vw - 425px) / 43));
-        height: calc(322px + (330 - 322) * ((100vw - 425px) / 43));
-    }
-}
-
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 468px) {
   .popup__container {
-      width: calc(282px + (387 - 282) * ((100vw - 320px) / 105));
-      height: 322px;
+    grid-template-columns: calc(22px + (36 - 22) * ((100vw - 320px) / 148)) minmax(100px, 358px) calc(22px + (36 - 22) * ((100vw - 320px) / 148));
+    grid-template-rows: 109px auto auto;
   }
 }

@@ -1,12 +1,8 @@
 .popup__input-container {
-    width: 358px;
-    margin: auto;
+    width: 100%;
+    margin: 0;
     padding: 0;
     border: 0;
-}
-
-@media screen and (max-width: 468px) {
-    .popup__input-container {
-        width: calc(323.13px + (358 - 323.13) * ((100vw - 425px) / 43));        
-    }
+    grid-column: 2/3;
+    grid-row: 2/3;
 }

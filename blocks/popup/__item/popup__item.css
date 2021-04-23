@@ -6,33 +6,33 @@
     box-sizing: border-box;
     background-color: transparent;
     font-size: 14px;
-    font-family: inherit;
+    font-family: Inter;
 }
 
 .popup__item::placeholder {
     font-size: 14px;
-    font-family: inherit;
+    font-family: Inter;
     line-height: 20px;
     color: #bcbcc4;
 } 
 
 .popup__item::-webkit-input-placeholder {
     font-size: 14px;
-    font-family: inherit;
+    font-family: Inter;
     line-height: 20px;
     color: #bcbcc4;
 }
 
 .popup__item::-moz-placeholder {
     font-size: 14px;
-    font-family: inherit;
+    font-family: Inter;
     line-height: 20px;
     color: #bcbcc4;
 }
 
 .popup__item::-ms-input-placeholder {
     font-size: 14px;
-    font-family: inherit;
+    font-family: Inter;
     line-height: 20px;
     color: #bcbcc4;
 }
