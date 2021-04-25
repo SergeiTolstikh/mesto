@@ -1,7 +1,7 @@
 .custo__title {
     color: #fff;
     margin: 0 0 0 24.375px;
-    font-family: Inter;
+    font-family: 'Inter', 'Arial', 'sans-serif';
     font-size: 42px;
     font-style: normal;
     font-weight: 500;
@@ -23,7 +23,6 @@
 
 @media screen and (max-width: 635px) {
     .custo__title {
-        grid-row: 2/3;
         grid-column: 3/4;
         font-size: 27px;
         line-height: 33px;
@@ -32,9 +31,7 @@
 
 @media screen and (max-width:425px) {
     .custo__title {
-        /*margin: 0 auto 0;*/
         margin: 0;
         grid-column: 2/3;
-        grid-row: 2/3;
     }
 }

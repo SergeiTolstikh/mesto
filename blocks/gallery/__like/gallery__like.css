@@ -10,6 +10,7 @@
     align-self: center;
     margin: auto;
     outline: none;
+    cursor: pointer;
 }
 
 .gallery__like:hover {

@@ -1,5 +1,5 @@
 .custo__add-button {
-    background-image: url(../../../image/Add\ Button.svg);
+    background-image: url(../../../image/AddButton.svg); /*исправлено*/
     background-size: 22px;
     background-color: transparent;
     background-position: 50%;
@@ -12,10 +12,11 @@
     grid-row: 2/3;
     justify-self: end;
     align-self: center;
+    cursor: pointer; /*исправлено*/
 }
 
 .custo__add-button:hover {
-    opacity: 0.7;
+    opacity: 0.6;  /*исправлено*/
     transition: 0.3s;
 }
 

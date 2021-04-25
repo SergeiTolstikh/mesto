@@ -6,13 +6,15 @@
   border: 0;
   border-radius: 2px;
   padding: 0;
-  margin: 47px 0 37px;
+  margin: 48px 0 37px;
   cursor: pointer;
   transition: opacity .4s;
   color: white;
-  font-family: Inter;
+  font-family: 'Inter', 'Arial', 'sans-serif';
   grid-column: 2/3;
   grid-row: 3/4;
+  cursor: pointer;
+  background-color: #000;
   }
   
   .popup__button-sbmt:hover {
@@ -23,19 +25,11 @@
   .popup__button-sbmt:focus {
     outline-color:#ffd900;
   }
-  
-  .popup__button-sbmt[type="submit"] {
-    background-color: #000;
-  }
-  
-  .popup__button-sbmt[type="reset"] {
-    background-color: #ea3a3a;
-  }
 
 @media screen and (max-width: 425px) {
     .popup__button-sbmt {
       height: 46px;
-      margin-top: calc(45px + (47 - 45) * ((100vw - 320px) / 105));
+      margin-top: calc(45px + (48 - 45) * ((100vw - 320px) / 105));
       margin-bottom: calc(25px + (37 - 25) * ((100vw - 320px) / 105));
       font-size: calc(14px + (18 - 14) * ((100vw - 320px) / 105));
       line-height: calc(17px + (22 - 17) * ((100vw - 320px) / 105));

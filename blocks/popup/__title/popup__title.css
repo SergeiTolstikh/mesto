@@ -1,12 +1,11 @@
 .popup__title {
     width: 100%;
-    margin: 34px 0 auto;
-    font-family: Inter;
+    margin: 31px 0 auto;
+    font-family: 'Inter', 'Arial', 'sans-serif';
     font-size: 24px;
     font-style: normal;
     font-weight: 900;
     line-height: 29px;
-    letter-spacing: 0em;
     text-align: left;
     grid-column: 2/3;
     grid-row: 1/2;
@@ -19,3 +18,4 @@
         margin-top:  calc(25px + (34 - 25) * ((100vw - 320px) / 148));
     }
 }
+

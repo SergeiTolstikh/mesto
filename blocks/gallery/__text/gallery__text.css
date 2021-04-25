@@ -1,46 +1,13 @@
 .gallery__text {
-    font-family: Inter;
+    font-family: 'Inter', 'Arial', 'sans-serif';
     font-size: 24px;
     font-style: normal;
     font-weight: 900;
     line-height: 29px;
-    letter-spacing: 0em;
     text-align: left;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     padding: 25px 0 25px 21px;
     margin: 0; 
-}
-
-@media screen and (max-width: 977px) {
-    .gallery__text {
-        font-size: calc(15.8px + (24 - 15.8) * ((100vw - 636px) / 341));
-        line-height: calc(18.8px + (29 - 18.8) * ((100vw - 636px) / 341));
-        padding-top: calc(16.8px + (25 - 16.8) * ((100vw - 636px) / 341));
-        padding-bottom: calc(16.8px + (25 - 16.8) * ((100vw - 636px) / 341));
-        padding-left: calc(16.8px + (21 - 16.8) * ((100vw - 636px) / 341));
-
-    }
-}
-
-@media screen and (max-width: 635px) {
-    .gallery__text {
-        font-size: calc(15.8px + (24 - 15.8) * ((100vw - 426px) / 209));
-        line-height: calc(18.8px + (29 - 18.8) * ((100vw - 426px) / 209));
-        padding-top: calc(16.8px + (25 - 16.8) * ((100vw - 426px) / 209));
-        padding-bottom: calc(16.8px + (25 - 16.8) * ((100vw - 426px) / 209));
-        padding-left: calc(16.8px + (21 - 16.8) * ((100vw - 426px) / 209));
-
-    }
-}
-
-@media screen and (max-width: 425px) {
-    .gallery__text {
-        font-size: calc(24px + (33 - 24) * ((100vw - 320px) / 105));
-        line-height: calc(29px + (39.72 - 29) * ((100vw - 320px) / 105));
-        padding-top: calc(25px + (34.25 - 25) * ((100vw - 320px) / 105));
-        padding-bottom: calc(25px + (34.25 - 25) * ((100vw - 320px) / 105));
-        padding-left: calc(21px + (28.76 - 21) * ((100vw - 320px) / 105));
-    }
 }
