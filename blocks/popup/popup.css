@@ -6,8 +6,11 @@
     width: 100%;
     background-color: rgba(0,0,0,.5);
     z-index: 7;
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .5s, opacity .5s;
     
 }

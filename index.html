@@ -82,19 +82,44 @@
         </footer>
 
 
-        <div class="popup">
+        <div class="popup" id="popup-profile">
             
-            <div class="popup__container">
+            <div class="popup__container popup__container_profile">
 
-                <form class="popup__form" name="ProfileForm">
+                <form class="popup__form popup__form_profile" name="ProfileForm">
 
-                    <button type="button" class="popup__close" title="Закрыть форму без сохранения"></button>
+                    <button type="button" class="popup__close" id="closePopProf" title="Закрыть форму без сохранения"></button>
 
                     <h2 class="popup__title">Редактировать профиль</h2>
 
-                    <fieldset class="popup__input-container">
+                    <fieldset class="popup__input-container popup__input-container_profile">
                       <input type="text" name="NameProfile" class="popup__input popup__input_item_name" placeholder="Имя">
                       <input type="text" name="AboutProfile" class="popup__input popup__input_item_aboutmyself" placeholder="О себе">
+                    </fieldset>
+
+                    <button type="submit" class="popup__button-sbmt" title="Сохранить изменения">Сохранить</button>
+         
+                </form>
+                  
+
+            </div>
+
+        </div>
+
+
+        <div class="popup" id="popup-card">
+            
+            <div class="popup__container">
+
+                <form class="popup__form" name="PlaceForm">
+
+                    <button type="button" class="popup__close" id="closePopPlace" title="Закрыть форму без сохранения"></button>
+
+                    <h2 class="popup__title">Новое место</h2>
+
+                    <fieldset class="popup__input-container">
+                      <input type="text" name="NamePlace" class="popup__input popup__input_item_placename" placeholder="Название">
+                      <input type="text" name="PictureURL" class="popup__input popup__input_item_urlpicture" placeholder="Ссылка на картинку">
                     </fieldset>
 
                     <button type="submit" class="popup__button-sbmt" title="Сохранить изменения">Сохранить</button>
