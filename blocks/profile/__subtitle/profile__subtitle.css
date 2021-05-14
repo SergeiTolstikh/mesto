@@ -1,4 +1,4 @@
-.custo__subtitle {
+.profile__subtitle {
     color: #fff;
     margin: 0 0 0 24.375px;
     font-family: 'Inter', 'Arial', 'sans-serif';
@@ -16,14 +16,14 @@
 }
 
 @media screen and (max-width: 977px) {
-    .custo__subtitle {
+    .profile__subtitle {
         font-size: calc(14px + (18 - 14) * ((100vw - 635px) / 342));
         line-height: calc(17px + (22 - 17) * ((100vw - 635px) / 342));
     }
 }
 
 @media screen and (max-width: 635px) {
-    .custo__subtitle {
+    .profile__subtitle {
         grid-column: 3/4;
         font-size: 14px;
         line-height: 17px;
@@ -31,7 +31,7 @@
 }
 
 @media screen and (max-width:425px) {
-    .custo__subtitle {
+    .profile__subtitle {
         grid-column: 2/3;
     }
 }

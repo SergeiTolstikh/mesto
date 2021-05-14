@@ -1,4 +1,4 @@
-.custo__image {
+.profile__image {
     max-width: 168.75px;
     max-height: 120px;
     border-radius: 100%;
@@ -6,13 +6,13 @@
 }
 
 @media screen and (max-width:635px) {
-    .custo__image {   
+    .profile__image {   
         grid-column: 2/3;          
     }                      
 }
 
 @media screen and (max-width:425px) {
-    .custo__image {
+    .profile__image {
         margin: 0 auto 26px;
         grid-column: 1/4;
         grid-row: 1/2;               
