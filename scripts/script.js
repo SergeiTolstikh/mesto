@@ -23,6 +23,16 @@ const urlGalleryInput = document.querySelector('.popup__input_item_url-gallery-i
 const galleryContainer = document.querySelector('.gallery'); //переменная заполняемой секции с изображениями галереи
 ///
 
+
+
+//Попап overlay просмотр фото крупно
+const galleryOverlay = document.querySelector('#overlay');
+const galleryOverlayImage = document.querySelector('.overlay__picture');
+const galleryOverlayName = document.querySelector('.overlay__picture-name')
+const overlayPopupCloseButton = document.querySelector('#close-overlay-popup')
+///
+
+
 //Массив изображений для галереи
 const initialCards = [
     {
@@ -52,15 +62,69 @@ const initialCards = [
   ];
 ///
 
+//
+function createGalleryCard(placeTitle, placeImageLink) { //функция добавления элементов в галерею
+  const galleryTemplate = document.querySelector('.gallery-template').content; //заготовка вёрстки
+  const galleryCard = galleryTemplate.querySelector('.gallery__card').cloneNode(true); //клонирование содержимого заготовки верстки
+  galleryCard.querySelector('.gallery__image').setAttribute('src', `${placeImageLink}`); //присвоение атрибута ссылки с переданным аргументом;
+  galleryCard.querySelector('.gallery__image').setAttribute('alt', `${placeTitle}`); //присвоение атрибута альтернативного текста с переданным аргументом
+  galleryCard.querySelector('.gallery__text').textContent = placeTitle; //присвоение текстового значения ;
+  
+  galleryCard.querySelector('.gallery__like').addEventListener('click', pushLike); //слушатель нажатия лайка
+  galleryCard.querySelector('.gallery__delete-card').addEventListener('click', deleteCard); //слушатель нажатия корзины
+  
+  galleryCard.querySelector('.gallery__image').addEventListener('click', function(evt) {//
+    openPlacePopup(evt.target.getAttribute('src'), evt.target.getAttribute('alt'));//запускаю функцию открытия попап, передаю ей в качестве параметров атрибуты со значаниями из кликнутого изображения
+  }) //слушатель открытия просмотра фотографии крупным планом
+  
+  return galleryCard;
+}
+//
+
+//Добавить карточки массива на страницу
+initialCards.forEach(function(item) {// функция добавления карточек на страницу при её загрузке методом перебора массива
+  galleryContainer.append(createGalleryCard(item.name, item.link)); //добавить в конец галереи перебранные карточки массива
+});
+///
+
+//поставить/удалить лайк карточки
+function pushLike(evt) { //переключение класса при нажатии на выбранный объект
+  evt.target.classList.toggle('gallery__like_on')
+};
+///
+
+//удалить карточку
+function deleteCard(evt) { 
+  evt.target.closest('.gallery__card').remove(); //удаление класса при нажатии на выбранный объект
+};
+///
+
+
+
 //Закрыть попап(ы)
 function closePopup(evt) {
   evt.target.closest('.popup').classList.remove('popup_opened');
 }
 ///
 
+//Открыть попап(ы)
+function openPopup(namePopup) {
+namePopup.classList.add('popup_opened');
+}
+///
+
+//Открыть попап просмотра фото в отдельном окне
+function openPlacePopup (img, name) {
+  openPopup(galleryOverlay);
+  galleryOverlayImage.src = img;
+  galleryOverlayImage.alt= name;
+  galleryOverlayName.textContent = name;
+}
+///
+
 //Открыть попап профиля
 function openProfilePopup() {
-  profilePopup.classList.add('popup_opened'); //присвоение класса с css свойствами открытия попап
+  openPopup(profilePopup);
   nameProfileInput.value = profileTitle.textContent; //присвоение значений по умолчанию из переменной наименования профиля
   aboutProfileInput.value = profileSubtitle.textContent; //присвоение значений по умолчанию из переменной описания профиля
 }
@@ -71,25 +135,22 @@ function submitProfileHundler(evt) {
   evt.preventDefault(); //Эта строчка отменяет стандартную отправку формы.
   profileTitle.textContent = (nameProfileInput.value); //присвоение перемнной наименования профиля введенных значений
   profileSubtitle.textContent = (aboutProfileInput.value); //присвоение перемнной описания профиля введенных значений                                                                                      
-  closePopup(evt); //вызов функции закрыть попап
+  closePopup(evt);
 }
 ///
 
 //Открыть попап галереи
-function openPopupGallery(placename, urlpicture) {
-  galleryPopup.classList.add('popup_opened'); //присвоение класса с css свойствами открытия попап
-  urlGalleryInput.setAttribute('src', `${urlpicture}`); //присвоение атрибута ссылки со значением из шаблонной строки равной "Ссылка на картинку"
-  urlGalleryInput.setAttribute('alt', `${placename}`); //присвоение атрибута альтернативного текста со значением из шаблонной строки равной "Название"
-  nameGalleryInput.textContent = placename; //присвоение текстового значения для "Название"
+function openPopupGallery(img, name) {
+  openPopup(galleryPopup);
+  urlGalleryInput.src = img;
+  urlGalleryInput.alt = name;
+
+
+  /*nameGalleryInput.textContent = placename; //присвоение текстового значения для "Название"*/
 }
 ///
 
-//Открыть изображение из галереи
-/*function ZoomGalleryPicture();*/
-
-///
-
-//Сохранить попап галереи
+//Сохранить попап галереи добавив карточки на страницу
 function submitGalleryHandler(evt) {
   evt.preventDefault(); //Эта строчка отменяет стандартную отправку формы.
   galleryContainer.prepend(createGalleryCard(nameGalleryInput.value, urlGalleryInput.value)); //поставить в начало контейнера результат работы функции createGalleryCard с аргументами по умолчанию
@@ -99,40 +160,6 @@ function submitGalleryHandler(evt) {
 }
 ///
 
-//функция нажатия лайк карточки
-function pushLike(evt) { //переключение класса при нажатии на выбранный объект
-  evt.target.classList.toggle('gallery__like_on')
-};
-///
-
-//функция удалить удалить карточку
-function deleteCard(evt) { 
-  evt.target.closest('.gallery__card').remove(); //удаление класса при нажатии на выбранный объект
-};
-///
-
-const galleryTemplate = document.querySelector('.gallery-template').content; //заготовка вёрстки
-const galleryCard = galleryTemplate.querySelector('.gallery__card') //содержимое заготовки верстки
- 
-
-function createGalleryCard(placeTitle, placeImageLink) { //функция добавления элементов в галерею
-  const newGalleryCard = galleryCard.cloneNode(true); //клонирование содержимого заготовки верстки
-  newGalleryCard.querySelector('.gallery__image').setAttribute('src', `${placeImageLink}`); //присвоение атрибута ссылки с переданным аргументом;
-  newGalleryCard.querySelector('.gallery__image').setAttribute('alt', `${placeTitle}`); //присвоение атрибута альтернативного текста с переданным аргументом
-  newGalleryCard.querySelector('.gallery__text').textContent = placeTitle; //присвоение текстового значения ;
-  
-  newGalleryCard.querySelector('.gallery__like').addEventListener('click', pushLike); //слушатель нажатия лайка
-  newGalleryCard.querySelector('.gallery__delete-card').addEventListener('click', deleteCard); //слушатель нажатия корзины
-  
-  return newGalleryCard;
-}
-
-
-//Добавить карточки массива на страницу при её загрузке
-initialCards.forEach(function(item) {// функция добавления методом перебора массива карточек на страницу при её загрузке
-  galleryContainer.append(createGalleryCard(item.name, item.link)); //добавить в конец галереи перебранные карточки массива
-});
-///
 
 //Слушатели
 profileEditButton.addEventListener('click', openProfilePopup); //кнопка попап_профиля_открыть
@@ -142,5 +169,7 @@ profilePopup.addEventListener('submit', submitProfileHundler); //кнопка п
 buttonAddPlusButton.addEventListener('click', openPopupGallery); //кнопка попап_место_открыть
 galleryPopupCloseButton.addEventListener('click', closePopup); //кнопка попап_место_закрыть
 galleryPopup.addEventListener('submit', submitGalleryHandler); //кнопка попап_место_сохранить
+
+overlayPopupCloseButton.addEventListener('click', closePopup); //кнопка попап_overlay_закрыть
 ///
 
