@@ -22,7 +22,7 @@
 
 @media screen and (max-width: 425px) {
     .profile {
-        grid-template-columns: 1fr 182px 1fr;
+        grid-template-columns: 1fr 192px 1fr;
         grid-template-rows: 1fr 55px 86px;
     }
 }
