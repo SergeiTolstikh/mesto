@@ -9,4 +9,4 @@
 #### 3. css медиазапросы
 #### 4. css относительные размеры
 #### 5. JavaScript
-### [ссылка на просмотр моего проекта](https://sergeitolstikh.github.io/mesto/index.html "Mesto")
+### [ссылка на просмотр моего проекта](https://sergeitolstikh.github.io/mesto/ "Mesto")
