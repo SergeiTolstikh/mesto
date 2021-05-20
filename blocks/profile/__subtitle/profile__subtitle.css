@@ -33,5 +33,7 @@
 @media screen and (max-width:425px) {
     .profile__subtitle {
         grid-column: 2/3;
+        margin-left: 0;
+        justify-self: center;
     }
 }

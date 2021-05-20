@@ -12,7 +12,8 @@
 }
 
 .popup__input:last-of-type {
-    padding-top: 25px;
+    padding-top: 9px;
+    margin-top: 16px;
 }
 
 .popup__input::placeholder {
