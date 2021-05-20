@@ -116,7 +116,7 @@ initialCards.forEach(function(item) {//перебрать массив
 
 //Поставить/удалить лайк карточки
 function pushLike(evt) {
-  evt.target.classList.toggle('gallery__like_on') //подключение/отключение класса при нажатии на выбранный объект
+  evt.target.classList.toggle('gallery__like_on'); //подключение/отключение класса при нажатии на выбранный объект
 };
 ///
 
