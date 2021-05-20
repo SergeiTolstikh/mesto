@@ -35,5 +35,6 @@
         grid-column: 2/3;
         margin-left: 0;
         justify-self: center;
+        max-width: 192px;
     }
 }
