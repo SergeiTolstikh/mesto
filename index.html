@@ -18,6 +18,7 @@
 
 
         <main class="content">
+
             <section class="profile">
 
                 <img src="./image/custo.jpg" class="profile__image" alt="Изображение профиля">
@@ -32,12 +33,12 @@
 
             <section class="gallery">
             </section>
-         
-            
+                     
         </main>
 
 
         <footer class="footer">
+
             <p class="footer__author">© 2021 Сергей Толстых</p>
 
         </footer>
@@ -47,9 +48,9 @@
             
             <div class="popup__container">
 
-                <form class="popup__form" name="profile-form" id="popup-profile">
+                <form class="popup__form" name="profile-form">
 
-                    <button type="button" class="popup__close" id="close-profile-popup" title="Закрыть форму без сохранения"></button>
+                    <button type="button" class="popup__close" title="Закрыть форму без сохранения"></button>
 
                     <h2 class="popup__title">Редактировать профиль</h2>
 
@@ -72,9 +73,9 @@
             
             <div class="popup__container">
 
-                <form class="popup__form" name="place-form" id="popup-card">
+                <form class="popup__form" name="place-form">
 
-                    <button type="button" class="popup__close" id="close-gallery-popup" title="Закрыть форму без сохранения"></button>
+                    <button type="button" class="popup__close" title="Закрыть форму без сохранения"></button>
 
                     <h2 class="popup__title">Новое место</h2>
 
@@ -92,13 +93,14 @@
 
         </div>
 
+
         <div class="popup" id="overlay">
             
             <div class="popup__container popup__container_overlay">
               
               <img class="overlay__picture" src="#" alt="#">
               <h2 class="overlay__picture-name"></h2>
-              <button type="button" class="popup__close popup__close_overlay" id="close-overlay-popup"></button>
+              <button type="button" class="popup__close popup__close_overlay"></button>
             
             </div>
             
@@ -109,14 +111,21 @@
  
 
     <template class="gallery-template">
+
         <div class="gallery__card">
+            
           <button class="gallery__delete-card" type="button"></button>
           <img class="gallery__image" src="#" alt="#">
           <h2 class="gallery__text"></h2>
           <button class="gallery__like" type="button"></button>
+
         </div>
+
     </template>
 
+
     <script src="./scripts/script.js"></script>
+
+    
 </body>
 </html>
