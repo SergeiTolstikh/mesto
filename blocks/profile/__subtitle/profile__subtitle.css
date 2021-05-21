@@ -6,19 +6,20 @@
     font-style: normal;
     font-weight: 400;
     line-height: 22px;
-    text-align: left;
     grid-row: 2/3;
     grid-column: 2/3;
     align-self: end;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    max-width: 309px;
 }
 
 @media screen and (max-width: 977px) {
     .profile__subtitle {
         font-size: calc(14px + (18 - 14) * ((100vw - 635px) / 342));
         line-height: calc(17px + (22 - 17) * ((100vw - 635px) / 342));
+        max-width: calc(187px + (309 - 187) * ((100vw - 635px) / 342));
     }
 }
 
@@ -27,6 +28,7 @@
         grid-column: 3/4;
         font-size: 14px;
         line-height: 17px;
+        max-width: 187px;
     }
 }
 
@@ -34,7 +36,6 @@
     .profile__subtitle {
         grid-column: 2/3;
         margin-left: 0;
-        justify-self: center;
-        max-width: 192px;
+        justify-self: center;     
     }
 }
