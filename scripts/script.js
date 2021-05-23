@@ -28,8 +28,8 @@ const urlGalleryInput = document.querySelector('.popup__input_item_url-gallery-i
 
 //Попап overlay просмотр фото крупно
 const galleryOverlay = document.querySelector('#overlay'); //переменная попап просмотра фото
-const galleryOverlayImage = document.querySelector('.overlay__picture'); //изображение
-const galleryOverlayName = document.querySelector('.overlay__picture-name'); //название изображения
+const galleryOverlayImage = document.querySelector('.popup__overlay-picture'); //изображение
+const galleryOverlayName = document.querySelector('.popup__overlay-picture-name'); //название изображения
 const overlayPopupCloseButton = galleryOverlay.querySelector('.popup__close'); //переменная кнопки закрыть попап overlay
 ///
 
