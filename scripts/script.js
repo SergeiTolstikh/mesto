@@ -62,54 +62,24 @@ const initialCards = [
   ];
 ///
 
-//функция добавления элементов в галерею вариант №1
+//функция добавления элементов в галерею
 function createGalleryCard(placeTitle, placeImageLink) { 
-  const galleryTemplate = document.querySelector('.gallery-template').content;//заготовка вёрстки контент внутри template
-  const galleryCard = galleryTemplate.querySelector('.gallery__card').cloneNode(true);//клонирование содержимого заготовки верстки
-  
-  galleryCard.querySelector('.gallery__image').setAttribute('src', `${placeImageLink}`);
-  galleryCard.querySelector('.gallery__image').setAttribute('alt', `${placeTitle}`);
+  const galleryTemplate = document.querySelector('.gallery-template').content; //заготовка вёрстки контент внутри template
+  const galleryCard = galleryTemplate.querySelector('.gallery__card').cloneNode(true); //клонирование содержимого заготовки верстки
+  const galleryImage = galleryCard.querySelector('.gallery__image');
+  galleryImage.setAttribute('src', placeImageLink);
+  galleryImage.setAttribute('alt', placeTitle);
   galleryCard.querySelector('.gallery__text').textContent = placeTitle;
-  
-  galleryCard.querySelector('.gallery__like').addEventListener('click', pushLike);//слушатель нажатия лайка
-  galleryCard.querySelector('.gallery__delete-card').addEventListener('click', deleteCard);//слушатель нажатия корзины
-  galleryCard.querySelector('.gallery__image').addEventListener('click', function(evt) {//слушатель открытия просмотра фотографии крупным планом
-    openPlacePopup(evt.target.getAttribute('src'), evt.target.getAttribute('alt'));//запускаю функцию открытия попап, передаю ей в качестве параметров атрибуты со значаниями из кликнутого изображения
-  }) 
-  
+  galleryCard.querySelector('.gallery__like').addEventListener('click', pushLike); //слушатель нажатия лайка
+  galleryCard.querySelector('.gallery__delete-card').addEventListener('click', deleteCard); //слушатель нажатия корзины
+  galleryImage.addEventListener('click', () => openPlacePopup(placeTitle, placeImageLink));
+
   return galleryCard;
 }
 ///
 
-/*
-//функция добавления элементов в галерею вариант №2
-const galleryTemplate = document.querySelector('.gallery-template').content; //заготовка вёрстки контент внутри template
-const galleryCard = galleryTemplate.querySelector('.gallery__card');
-
-function createGalleryCard(placeTitle, placeImageLink) { //функция добавления элементов в галерею
-  const galleryCloneCard = galleryCard.cloneNode(true); //клонирование содержимого заготовки верстки
-  const galleryImage = galleryCloneCard.querySelector('.gallery__image');
-  const galleryText = galleryCloneCard.querySelector('.gallery__text');
-  const galleryLike = galleryCloneCard.querySelector('.gallery__like');
-  const galleryImgDel = galleryCloneCard.querySelector('.gallery__delete-card');
-  galleryImage.src = placeImageLink;
-  galleryImage.alt = placeTitle;
-  galleryText.textContent = placeTitle;
-  
-  galleryLike.addEventListener('click', pushLike); //слушатель нажатия лайка
-  galleryImgDel.addEventListener('click', deleteCard); //слушатель нажатия корзины
-  
-  galleryImage.addEventListener('click', function(evt) { //слушатель открытия просмотра фотографии крупным планом
-    openPlacePopup(evt.target.getAttribute('src'), evt.target.getAttribute('alt'));
-  }) 
-  
-  return galleryCloneCard;
-}
-///
-*/
-
 //Добавляет карточки на страницу при загрузке страницы
-initialCards.forEach(function(item) {//перебрать массив
+initialCards.forEach(function(item) { //перебрать массив
   galleryContainer.append(createGalleryCard(item.name, item.link)); //добавить в конец массива карточки 
 });
 ///
@@ -127,8 +97,8 @@ function deleteCard(evt) { //передать слушателю нажатия 
 ///
 
 //Закрыть попап(ы)
-function closePopup(evt) { //пердать попап удалив класс открытия попап
-  evt.target.closest('.popup').classList.remove('popup_opened');
+function closePopup(namePopup) {
+  namePopup.classList.remove('popup_opened');
 }
 ///
 
@@ -146,17 +116,8 @@ function openProfilePopup() {
 }
 ///
 
-//Открыть попап галереи
-function openPopupGallery(img, name) {
-  openPopup(galleryPopup); //класс открытия + идентификатор попапа галереи
-  urlGalleryInput.src = img;
-  urlGalleryInput.alt = name;
-  nameGalleryInput.textContent = name;
-}
-///
-
 //Открыть попап просмотра фото в отдельном окне
-function openPlacePopup (img, name) {
+function openPlacePopup (name, img) {
   openPopup(galleryOverlay); //класс открытия + идентификатор попапа overlay
   galleryOverlayImage.src = img;
   galleryOverlayImage.alt= name;
@@ -167,9 +128,9 @@ function openPlacePopup (img, name) {
 //Сохранить попап профиля
 function submitProfileHundler(evt) {
   evt.preventDefault(); //отмену стандартной отправки формы
-  profileTitle.textContent = (nameProfileInput.value);//введённые значение
-  profileSubtitle.textContent = (aboutProfileInput.value);//введённые значение                                                                                      
-  closePopup(evt);
+  profileTitle.textContent = (nameProfileInput.value); //введённые значение
+  profileSubtitle.textContent = (aboutProfileInput.value); //введённые значение                                                                                      
+  closePopup(profilePopup);
 }
 ///
 
@@ -177,21 +138,20 @@ function submitProfileHundler(evt) {
 function submitGalleryHandler(evt) { //передать при вызове
   evt.preventDefault(); //Эта строчка отменяет стандартную отправку формы.
   galleryContainer.prepend(createGalleryCard(nameGalleryInput.value, urlGalleryInput.value)); //в начало контейнера результат работы функции createGalleryCard с параметрами.
-  nameGalleryInput.value = '';
-  urlGalleryInput.value = '';
-  closePopup(evt);
+  document.querySelector('#reset-gallery').reset();
+  closePopup(galleryPopup);
 }
 ///
 
 //Слушатели
 profileEditButton.addEventListener('click', openProfilePopup); //кнопка попап_профиля_открыть
-profilePopupCloseButton.addEventListener('click', closePopup); //кнопка попап_профиля_закрыть
+profilePopupCloseButton.addEventListener('click', () => closePopup(profilePopup)); //кнопка попап_профиля_закрыть
 profilePopup.addEventListener('submit', submitProfileHundler); //кнопка попап_профиля_сохранить
 
-buttonAddPlusButton.addEventListener('click', openPopupGallery); //кнопка попап_место_открыть
-galleryPopupCloseButton.addEventListener('click', closePopup); //кнопка попап_место_закрыть
+buttonAddPlusButton.addEventListener('click', () => openPopup(galleryPopup)); //кнопка попап_место_открыть
+galleryPopupCloseButton.addEventListener('click', () => closePopup(galleryPopup)); //кнопка попап_место_закрыть
 galleryPopup.addEventListener('submit', submitGalleryHandler); //кнопка попап_место_сохранить
 
-overlayPopupCloseButton.addEventListener('click', closePopup); //кнопка попап_overlay_закрыть
+overlayPopupCloseButton.addEventListener('click', () => closePopup(galleryOverlay)); //кнопка попап_overlay_закрыть
 ///
 
