@@ -138,7 +138,7 @@ function submitProfileHundler(evt) {
 function submitGalleryHandler(evt) { //передать при вызове
   evt.preventDefault(); //Эта строчка отменяет стандартную отправку формы.
   galleryContainer.prepend(createGalleryCard(nameGalleryInput.value, urlGalleryInput.value)); //в начало контейнера результат работы функции createGalleryCard с параметрами.
-  document.querySelector('#reset-gallery').reset();
+  galleryPopup.querySelector('.popup__form').reset();
   closePopup(galleryPopup);
 }
 ///
