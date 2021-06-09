@@ -99,12 +99,37 @@ function deleteCard(evt) { //передать слушателю нажатия 
 //Закрыть попап(ы)
 function closePopup(namePopup) {
   namePopup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handlePressEsc);
 }
 ///
+
+//--Закрыть попап кликнув на оверлей
+function closePopupOverlay() {
+  const popupArray = Array.from(document.querySelectorAll('.popup'));
+  popupArray.forEach(function (popup) {
+    popup.addEventListener('click', (evt) => {
+      if (evt.target.classList.contains('popup')) {
+        closePopup(popup);
+      }
+    });
+  });
+}
+//--
+
+//--Закрыть попап нажатием клавиши Esc
+function handlePressEsc(evt) {
+  if (evt.key === "Escape") {
+    const popupActive = document.querySelector('.popup_opened');
+    closePopup(popupActive);
+  }
+}
+//--
 
 //Открыть попап(ы)
 function openPopup(namePopup) {
 namePopup.classList.add('popup_opened');
+closePopupOverlay();
+document.addEventListener('keydown', handlePressEsc);
 }
 ///
 
