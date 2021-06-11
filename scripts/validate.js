@@ -35,6 +35,7 @@ const setEventListeners = (formSelector) => {
     // сделаем из них массив методом Array.from
     const inputList = Array.from(formSelector.querySelectorAll('.popup__input'));
     const buttonElement = formSelector.querySelector('.popup__button');
+    toggleButtonState(inputList, buttonElement);
     
     // Обойдём все элементы полученной коллекции
     inputList.forEach((inputElement) => {
@@ -68,7 +69,7 @@ const setEventListeners = (formSelector) => {
   };
   
   // Вызовем функцию
-  enableValidation();
+  
 
 
   // Функция принимает массив полей
@@ -92,8 +93,12 @@ const toggleButtonState = (inputList, buttonElement) => {
     if (hasInvalidInput(inputList)) {
       // сделай кнопку неактивной
       buttonElement.classList.add('popup__button_disabled');
+      buttonElement.setAttribute('disabled', true)
     } else {
       // иначе сделай кнопку активной
       buttonElement.classList.remove('popup__button_disabled');
+      buttonElement.removeAttribute('disabled')
     }
   };
+
+  enableValidation();
