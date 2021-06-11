@@ -13,14 +13,13 @@
     white-space: nowrap;
     overflow: hidden;
     max-width: 309px;
-
 }
 
 @media screen and (max-width: 977px) {
     .profile__title {
         font-size: calc(27px + (42 - 27) * ((100vw - 635px) / 342));
         line-height: calc(33px + (48 - 33) * ((100vw - 635px) / 342));
-        max-width: calc(187px + (309 - 187) * ((100vw - 635px) / 342));
+        max-width: calc(189px + (309 - 189) * ((100vw - 635px) / 342));
     }
 }
 
@@ -29,15 +28,14 @@
         grid-column: 3/4;
         font-size: 27px;
         line-height: 33px;
-        max-width: 187px;
+        max-width: 189px;
     }
 }
 
 @media screen and (max-width:425px) {
     .profile__title {
         margin-left: 0;
-        grid-column: 2/3;
-        
+        grid-column: 2/3;       
         justify-self: center;
     }
 }

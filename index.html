@@ -49,18 +49,20 @@
             
             <div class="popup__container">
 
-                <form class="popup__form" name="profile-form">
+                <form class="popup__form" name="profile-form" novalidate>
 
                     <button type="button" class="popup__close" title="Закрыть форму без сохранения"></button>
 
                     <h2 class="popup__title">Редактировать профиль</h2>
 
                     <fieldset class="popup__input-container">
-                      <input type="text" required name="NameProfile" class="popup__input popup__input_item_name-profile-input" placeholder="Имя">
-                      <input type="text" required name="AboutProfile" class="popup__input popup__input_item_about-profile-input" placeholder="О себе">
+                      <input type="text" id="popup__nickname" required name="NameProfile" class="popup__input popup__input_item_name-profile-input" minlength="2" maxlength="40" placeholder="Имя">
+                      <span class="popup__error popup__nickname-error"></span>
+                      <input type="text" id="popup__info" required name="AboutProfile" class="popup__input popup__input_item_about-profile-input" minlength="2" maxlength="200" placeholder="О себе">
+                      <span class="popup__error popup__info-error"></span>
                     </fieldset>
 
-                    <button type="submit" class="popup__button-sbmt" title="Сохранить изменения">Сохранить</button>
+                    <button type="submit" class="popup__button" title="Сохранить изменения">Сохранить</button>
          
                 </form>
                   
@@ -74,18 +76,20 @@
             
             <div class="popup__container">
 
-                <form class="popup__form" name="place-form">
+                <form class="popup__form" name="place-form" novalidate>
 
                     <button type="button" class="popup__close" title="Закрыть форму без сохранения"></button>
 
                     <h2 class="popup__title">Новое место</h2>
 
                     <fieldset class="popup__input-container">
-                      <input type="text" required name="NamePlace" class="popup__input popup__input_item_name-gallery-input" placeholder="Название">
-                      <input type="text" required name="PictureURL" class="popup__input popup__input_item_url-gallery-input" placeholder="Ссылка на картинку">
+                      <input type="text" id="popup__newplace" required name="NamePlace" class="popup__input popup__input_item_name-gallery-input" minlength="2" maxlength="200" placeholder="Название">
+                      <span class="popup__error popup__newplace-error"></span>
+                      <input type="url" id="popup__picture" required name="PictureURL" class="popup__input popup__input_item_url-gallery-input" placeholder="Ссылка на картинку">
+                      <span class="popup__error popup__picture-error"></span>
                     </fieldset>
 
-                    <button type="submit" class="popup__button-sbmt" title="Сохранить изменения">Сохранить</button>
+                    <button type="submit" class="popup__button" title="Сохранить изменения">Сохранить</button>
          
                 </form>
                   
@@ -124,7 +128,7 @@
 
     </template>
 
-
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/script.js"></script>
 
     

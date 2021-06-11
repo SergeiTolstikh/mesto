@@ -180,3 +180,14 @@ galleryPopup.addEventListener('submit', submitGalleryHandler); //кнопка п
 overlayPopupCloseButton.addEventListener('click', () => closePopup(galleryOverlay)); //кнопка попап_overlay_закрыть
 ///
 
+// включение валидации вызовом enableValidation
+// все настройки передаются при вызове
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+});

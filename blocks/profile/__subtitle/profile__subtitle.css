@@ -19,7 +19,7 @@
     .profile__subtitle {
         font-size: calc(14px + (18 - 14) * ((100vw - 635px) / 342));
         line-height: calc(17px + (22 - 17) * ((100vw - 635px) / 342));
-        max-width: calc(187px + (309 - 187) * ((100vw - 635px) / 342));
+        max-width: calc(189px + (309 - 189) * ((100vw - 635px) / 342));
     }
 }
 
@@ -28,7 +28,7 @@
         grid-column: 3/4;
         font-size: 14px;
         line-height: 17px;
-        max-width: 187px;
+        max-width: 189px;
     }
 }
 
