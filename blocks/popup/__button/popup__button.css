@@ -13,7 +13,7 @@
   grid-column: 2/3;
   grid-row: 3/4;
   cursor: pointer;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 1);
   }
   
   .popup__button:hover {
