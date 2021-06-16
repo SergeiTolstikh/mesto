@@ -36,28 +36,28 @@ const setEventListeners = (formSelector, obj) => {
 
 const enableValidation = (obj) => {
   const formList = Array.from(document.querySelectorAll(obj.formSelector)); //Создать массив из найденных форм попап  
-  formList.forEach((formSelector) => {  //Переберём этот массив
-    formSelector.addEventListener('submit', (evt) => { //У каждой формы отменим стандартное поведение
+  formList.forEach((formElement) => {  //Переберём этот массив
+    formElement.addEventListener('submit', (evt) => { //У каждой формы отменим стандартное поведение
       evt.preventDefault();
-   });
-    setEventListeners(formSelector, obj); //Для каждой формы вызовем функцию setEventListeners, передав ей элемент формы и объект настроек
+    });
+    setEventListeners(formElement, obj); //Для каждой формы вызовем функцию setEventListeners, передав ей элемент формы и объект настроек
   });
 };
-  
+
 // Проверка на валидность полей ввода формы
 const hasInvalidInput = (inputList) => { //Функция принимает массив полей
   return inputList.some((inputElement) => { // Проходим по этому массиву методом some
-      return !inputElement.validity.valid; // Если поле не валидно, колбэк вернёт true, обход массива прекратится и вся фунцкция hasInvalidInput вернёт true
-    });
+    return !inputElement.validity.valid; // Если поле не валидно, колбэк вернёт true, обход массива прекратится и вся фунцкция hasInvalidInput вернёт true
+  });
 };
 
 // Функция принимает массив полей ввода и элемент кнопки, состояние которой нужно менять
 const toggleButtonState = (inputList, buttonElement, obj) => {
   if (hasInvalidInput(inputList)) { //Если есть хотя бы один невалидный инпут
     disablesButton(buttonElement, obj);
-    } else { //иначе сделай кнопку активной  
-      enablesButton(buttonElement, obj);
-    }
+  } else { //иначе сделай кнопку активной  
+    enablesButton(buttonElement, obj);
+  }
 };
 
 const disablesButton = (buttonElement, obj) => {

@@ -33,154 +33,124 @@ const galleryOverlayName = document.querySelector('.popup__overlay-picture-name'
 const overlayPopupCloseButton = galleryOverlay.querySelector('.popup__close'); //переменная кнопки закрыть попап overlay
 ///
 
-//Массив изображений для галереи
-const initialCards = [
-    {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-  ];
-///
-
 //функция добавления элементов в галерею
-function createGalleryCard(placeTitle, placeImageLink) { 
+function createGalleryCard(placeTitle, placeImageLink) {
   const galleryTemplate = document.querySelector('.gallery-template').content; //заготовка вёрстки контент внутри template
   const galleryCard = galleryTemplate.querySelector('.gallery__card').cloneNode(true); //клонирование содержимого заготовки верстки
   const galleryImage = galleryCard.querySelector('.gallery__image');
-  galleryImage.setAttribute('src', placeImageLink);
-  galleryImage.setAttribute('alt', placeTitle);
+  galleryImage.src = placeImageLink;
+  galleryImage.alt = placeTitle;
   galleryCard.querySelector('.gallery__text').textContent = placeTitle;
-  galleryCard.querySelector('.gallery__like').addEventListener('click', pushLike); //слушатель нажатия лайка
-  galleryCard.querySelector('.gallery__delete-card').addEventListener('click', deleteCard); //слушатель нажатия корзины
-  galleryImage.addEventListener('click', () => openPlacePopup(placeTitle, placeImageLink));
+  galleryCard.querySelector('.gallery__like').addEventListener('click', handleLikeClick); //слушатель нажатия лайка
+  galleryCard.querySelector('.gallery__delete-card').addEventListener('click', handleDeleteCard); //слушатель нажатия корзины
+  galleryImage.addEventListener('click', () => handleOpenPlacePopup(placeTitle, placeImageLink));
 
   return galleryCard;
 }
 ///
 
 //Добавляет карточки на страницу при загрузке страницы
-initialCards.forEach(function(item) { //перебрать массив
+initialCards.forEach(function (item) { //перебрать массив
   galleryContainer.append(createGalleryCard(item.name, item.link)); //добавить в конец массива карточки 
 });
 ///
 
 //Поставить/удалить лайк карточки
-function pushLike(evt) {
+function handleLikeClick(evt) {
   evt.target.classList.toggle('gallery__like_on'); //подключение/отключение класса при нажатии на выбранный объект
 };
 ///
 
 //Удалить карточку
-function deleteCard(evt) { //передать слушателю нажатия корзины удаленный блок
+function handleDeleteCard(evt) { //передать слушателю нажатия корзины удаленный блок
   evt.target.closest('.gallery__card').remove();
 };
 ///
 
 //Закрыть попап(ы)
-function closePopup(namePopup) {
+function handleClosePopup(namePopup) {
   namePopup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handlePressEsc);
 }
 ///
 
 //--Закрыть попап кликнув на оверлей
-function closePopupOverlay() {
+function handleClosePopupOverlay() {
   const popupArray = Array.from(document.querySelectorAll('.popup'));
   popupArray.forEach(function (popup) {
     popup.addEventListener('click', (evt) => {
       if (evt.target.classList.contains('popup')) {
-        closePopup(popup);
+        handleClosePopup(popup);
       }
     });
   });
 }
 
-closePopupOverlay();
+handleClosePopupOverlay();
 //--
 
 //--Закрыть попап нажатием клавиши Esc
 function handlePressEsc(evt) {
   if (evt.key === "Escape") {
     const popupActive = document.querySelector('.popup_opened');
-    closePopup(popupActive);
+    handleClosePopup(popupActive);
   }
 }
 //--
 
 //Открыть попап(ы)
-function openPopup(namePopup) {
-namePopup.classList.add('popup_opened');
-
-document.addEventListener('keydown', handlePressEsc);
+function handleOpenPopup(namePopup) {
+  namePopup.classList.add('popup_opened');
+  document.addEventListener('keydown', handlePressEsc);
 }
 ///
 
 //Открыть попап профиля
-function openProfilePopup() {
-  openPopup(profilePopup); //класс открытия + идентификатор попапа профиля
+function handleOpenProfilePopup() {
+  handleOpenPopup(profilePopup); //класс открытия + идентификатор попапа профиля
   nameProfileInput.value = profileTitle.textContent;
   aboutProfileInput.value = profileSubtitle.textContent;
 }
 ///
 
 //Открыть попап просмотра фото в отдельном окне
-function openPlacePopup (name, img) {
-  openPopup(galleryOverlay); //класс открытия + идентификатор попапа overlay
+function handleOpenPlacePopup(name, img) {
+  handleOpenPopup(galleryOverlay); //класс открытия + идентификатор попапа overlay
   galleryOverlayImage.src = img;
-  galleryOverlayImage.alt= name;
+  galleryOverlayImage.alt = name;
   galleryOverlayName.textContent = name;
 }
 ///
 
 //Сохранить попап профиля
-function submitProfileHundler(evt) {
+function handleSubmitProfile(evt) {
   evt.preventDefault(); //отмену стандартной отправки формы
-  profileTitle.textContent = (nameProfileInput.value); //введённые значение
-  profileSubtitle.textContent = (aboutProfileInput.value); //введённые значение                                                                                      
-  closePopup(profilePopup);
+  profileTitle.textContent = nameProfileInput.value; //введённые значение
+  profileSubtitle.textContent = aboutProfileInput.value; //введённые значение                                                                                      
+  handleClosePopup(profilePopup);
 }
 ///
 
 //Сохранить попап галереи добавив карточки на страницу
-function submitGalleryHandler(evt) { //передать при вызове
+function handleSubmitGallery(evt) { //передать при вызове
   evt.preventDefault(); //Эта строчка отменяет стандартную отправку формы.
   const popupSubmitButton = document.querySelector('#popup-button-gallery');
-  const inactiveButtonClass = {inactiveButtonClass: 'popup__button_disabled'};
+  const inactiveButtonClass = { inactiveButtonClass: 'popup__button_disabled' };
   galleryContainer.prepend(createGalleryCard(nameGalleryInput.value, urlGalleryInput.value)); //в начало контейнера результат работы функции createGalleryCard с параметрами.
   galleryPopup.querySelector('.popup__form').reset();
-  closePopup(galleryPopup);
+  handleClosePopup(galleryPopup);
   disablesButton(popupSubmitButton, inactiveButtonClass);
 }
 ///
 
 //Слушатели
-profileEditButton.addEventListener('click', openProfilePopup); //кнопка попап_профиля_открыть
-profilePopupCloseButton.addEventListener('click', () => closePopup(profilePopup)); //кнопка попап_профиля_закрыть
-profilePopup.addEventListener('submit', submitProfileHundler); //кнопка попап_профиля_сохранить
+profileEditButton.addEventListener('click', handleOpenProfilePopup); //кнопка попап_профиля_открыть
+profilePopupCloseButton.addEventListener('click', () => handleClosePopup(profilePopup)); //кнопка попап_профиля_закрыть
+profilePopup.addEventListener('submit', handleSubmitProfile); //кнопка попап_профиля_сохранить
 
-buttonAddPlusButton.addEventListener('click', () => openPopup(galleryPopup)); //кнопка попап_место_открыть
-galleryPopupCloseButton.addEventListener('click', () => closePopup(galleryPopup)); //кнопка попап_место_закрыть
-galleryPopup.addEventListener('submit', submitGalleryHandler); //кнопка попап_место_сохранить
+buttonAddPlusButton.addEventListener('click', () => handleOpenPopup(galleryPopup)); //кнопка попап_место_открыть
+galleryPopupCloseButton.addEventListener('click', () => handleClosePopup(galleryPopup)); //кнопка попап_место_закрыть
+galleryPopup.addEventListener('submit', handleSubmitGallery); //кнопка попап_место_сохранить
 
-overlayPopupCloseButton.addEventListener('click', () => closePopup(galleryOverlay)); //кнопка попап_overlay_закрыть
+overlayPopupCloseButton.addEventListener('click', () => handleClosePopup(galleryOverlay)); //кнопка попап_overlay_закрыть
 ///
