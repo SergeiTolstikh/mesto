@@ -114,6 +114,8 @@ function closePopupOverlay() {
     });
   });
 }
+
+closePopupOverlay();
 //--
 
 //--Закрыть попап нажатием клавиши Esc
@@ -128,7 +130,7 @@ function handlePressEsc(evt) {
 //Открыть попап(ы)
 function openPopup(namePopup) {
 namePopup.classList.add('popup_opened');
-closePopupOverlay();
+
 document.addEventListener('keydown', handlePressEsc);
 }
 ///
@@ -162,9 +164,12 @@ function submitProfileHundler(evt) {
 //Сохранить попап галереи добавив карточки на страницу
 function submitGalleryHandler(evt) { //передать при вызове
   evt.preventDefault(); //Эта строчка отменяет стандартную отправку формы.
+  const popupSubmitButton = document.querySelector('#popup-button-gallery');
+  const inactiveButtonClass = {inactiveButtonClass: 'popup__button_disabled'};
   galleryContainer.prepend(createGalleryCard(nameGalleryInput.value, urlGalleryInput.value)); //в начало контейнера результат работы функции createGalleryCard с параметрами.
   galleryPopup.querySelector('.popup__form').reset();
   closePopup(galleryPopup);
+  disablesButton(popupSubmitButton, inactiveButtonClass);
 }
 ///
 
@@ -179,4 +184,3 @@ galleryPopup.addEventListener('submit', submitGalleryHandler); //кнопка п
 
 overlayPopupCloseButton.addEventListener('click', () => closePopup(galleryOverlay)); //кнопка попап_overlay_закрыть
 ///
-

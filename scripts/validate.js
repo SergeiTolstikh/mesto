@@ -54,13 +54,21 @@ const hasInvalidInput = (inputList) => { //Функция принимает м�
 // Функция принимает массив полей ввода и элемент кнопки, состояние которой нужно менять
 const toggleButtonState = (inputList, buttonElement, obj) => {
   if (hasInvalidInput(inputList)) { //Если есть хотя бы один невалидный инпут
-    buttonElement.classList.add(obj.inactiveButtonClass); //сделай кнопку неактивной
-    buttonElement.setAttribute('disabled', true)
+    disablesButton(buttonElement, obj);
     } else { //иначе сделай кнопку активной  
-      buttonElement.classList.remove(obj.inactiveButtonClass);
-      buttonElement.removeAttribute('disabled')
+      enablesButton(buttonElement, obj);
     }
 };
+
+const disablesButton = (buttonElement, obj) => {
+  buttonElement.classList.add(obj.inactiveButtonClass); //сделай кнопку неактивной
+  buttonElement.setAttribute('disabled', true)
+}
+
+const enablesButton = (buttonElement, obj) => {
+  buttonElement.classList.remove(obj.inactiveButtonClass); //сделай кнопку неактивной
+  buttonElement.removeAttribute('disabled')
+}
 
 enableValidation({
   formSelector: '.popup__form',
@@ -70,5 +78,3 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
 });
-
-  
