@@ -1,4 +1,5 @@
-import {initialCards} from './initial-сards.js';
+import { initialCards } from './initial-сards.js';
+import { Card } from './Card.js';
 //Профиль
 const profileEditButton = document.querySelector('.profile__edit-button'); //переменная кнопки редактирования профиля
 const profileTitle = document.querySelector('.profile__title'); //переменная наименования профиля
@@ -34,39 +35,17 @@ const galleryOverlayName = document.querySelector('.popup__overlay-picture-name'
 const overlayPopupCloseButton = galleryOverlay.querySelector('.popup__close'); //переменная кнопки закрыть попап overlay
 ///
 
-//функция добавления элементов в галерею
-function createGalleryCard(placeTitle, placeImageLink) {
-  const galleryTemplate = document.querySelector('.gallery-template').content; //заготовка вёрстки контент внутри template
-  const galleryCard = galleryTemplate.querySelector('.gallery__card').cloneNode(true); //клонирование содержимого заготовки верстки
-  const galleryImage = galleryCard.querySelector('.gallery__image');
-  galleryImage.src = placeImageLink;
-  galleryImage.alt = placeTitle;
-  galleryCard.querySelector('.gallery__text').textContent = placeTitle;
-  galleryCard.querySelector('.gallery__like').addEventListener('click', handleLikeClick); //слушатель нажатия лайка
-  galleryCard.querySelector('.gallery__delete-card').addEventListener('click', handleDeleteCard); //слушатель нажатия корзины
-  galleryImage.addEventListener('click', () => handleOpenPlacePopup(placeTitle, placeImageLink));
-
-  return galleryCard;
-}
-///
-
-//Добавляет карточки на страницу при загрузке страницы
-initialCards.forEach(function (item) { //перебрать массив
-  galleryContainer.append(createGalleryCard(item.name, item.link)); //добавить в конец массива карточки 
+//вставка из массива экзепляров карточек
+initialCards.forEach(function (element) {
+  const insertCard = createCard(element);
+  galleryContainer.append(insertCard);
 });
-///
 
-//Поставить/удалить лайк карточки
-function handleLikeClick(evt) {
-  evt.target.classList.toggle('gallery__like_on'); //подключение/отключение класса при нажатии на выбранный объект
-};
-///
-
-//Удалить карточку
-function handleDeleteCard(evt) { //передать слушателю нажатия корзины удаленный блок
-  evt.target.closest('.gallery__card').remove();
-};
-///
+//создает экземпляр класса и возвращает карточку
+function createCard(element) {
+  const card = new Card(element, '.gallery-template', handleOpenPlacePopup);
+  return card.createCard();
+}
 
 //Закрыть попап(ы)
 function handleClosePopup(namePopup) {
@@ -137,7 +116,11 @@ function handleSubmitGallery(evt) { //передать при вызове
   evt.preventDefault(); //Эта строчка отменяет стандартную отправку формы.
   const popupSubmitButton = document.querySelector('#popup-button-gallery');
   const inactiveButtonClass = { inactiveButtonClass: 'popup__button_disabled' };
-  galleryContainer.prepend(createGalleryCard(nameGalleryInput.value, urlGalleryInput.value)); //в начало контейнера результат работы функции createGalleryCard с параметрами.
+  const element = {
+    name: nameGalleryInput.value,
+    link: urlGalleryInput.value
+  };
+  galleryContainer.prepend(createCard(element)); //в начало контейнера результат работы функции createGalleryCard с параметрами.
   galleryPopup.querySelector('.popup__form').reset();
   handleClosePopup(galleryPopup);
   disablesButton(popupSubmitButton, inactiveButtonClass);
