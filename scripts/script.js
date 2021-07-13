@@ -1,5 +1,5 @@
-import { initialCards } from './initial-сards.js';
-import { Card } from './Card.js';
+//import { initialCards } from './initial-сards.js';
+import { Card, initialCards } from './Card.js';
 //Профиль
 const profileEditButton = document.querySelector('.profile__edit-button'); //переменная кнопки редактирования профиля
 const profileTitle = document.querySelector('.profile__title'); //переменная наименования профиля
