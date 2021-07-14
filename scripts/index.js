@@ -1,12 +1,24 @@
-//import { initialCards } from './initial-сards.js';
+import { FormValidator } from './FormValidator.js';
 import { Card, initialCards } from './Card.js';
+
+///---
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}
+///---
+
 //Профиль
 const profileEditButton = document.querySelector('.profile__edit-button'); //переменная кнопки редактирования профиля
 const profileTitle = document.querySelector('.profile__title'); //переменная наименования профиля
 const profileSubtitle = document.querySelector('.profile__subtitle'); //переменная описания профиля
 ///
 
-//Галерея 
+//Галерея
 const buttonAddPlusButton = document.querySelector('.profile__add-button'); //переменная кнопки добавить место +
 ///
 
@@ -16,6 +28,7 @@ const galleryContainer = document.querySelector('.gallery');
 
 //Попап Профиля
 const profilePopup = document.querySelector('#profile-popup'); //переменная попап профиля
+const profilePopupForm = profilePopup.querySelector('#profile-popup-form');
 const profilePopupCloseButton = profilePopup.querySelector('.popup__close'); //переменная кнопки закрыть попап профиля
 const nameProfileInput = document.querySelector('.popup__input_item_name-profile-input'); //переменная строки ввода "Имя"
 const aboutProfileInput = document.querySelector('.popup__input_item_about-profile-input'); //переменная строки ввода "О себе"
@@ -23,6 +36,7 @@ const aboutProfileInput = document.querySelector('.popup__input_item_about-profi
 
 //Попап Галереи
 const galleryPopup = document.querySelector('#gallery-popup'); //переменная попап галереи
+const galleryPopupForm = galleryPopup.querySelector('#gallery-popup-form');
 const galleryPopupCloseButton = galleryPopup.querySelector('.popup__close'); //переменная кнопки закрыть попап галереи
 const nameGalleryInput = document.querySelector('.popup__input_item_name-gallery-input'); //переменная строки ввода "Название"
 const urlGalleryInput = document.querySelector('.popup__input_item_url-gallery-input'); //переменная строки ввода "Ссылка на картинку"
@@ -35,22 +49,34 @@ const galleryOverlayName = document.querySelector('.popup__overlay-picture-name'
 const overlayPopupCloseButton = galleryOverlay.querySelector('.popup__close'); //переменная кнопки закрыть попап overlay
 ///
 
-//вставка из массива экзепляров карточек
+//
+const profileFormValidator = new FormValidator(config, profilePopupForm);
+profileFormValidator.enableValidation(); //валидация попап профиля
+
+const cardFormValidator = new FormValidator(config, galleryPopupForm);
+cardFormValidator.enableValidation(); //валидация попап галереи
+///
+
+//
 initialCards.forEach(function (element) {
   const insertCard = createCard(element);
   galleryContainer.append(insertCard);
 });
+///
 
 //создает экземпляр класса и возвращает карточку
 function createCard(element) {
   const card = new Card(element, '.gallery-template', handleOpenPlacePopup);
   return card.createCard();
 }
+///
 
 //Закрыть попап(ы)
 function handleClosePopup(namePopup) {
   namePopup.classList.remove('popup_opened');
   document.removeEventListener('keydown', handlePressEsc);
+  profileFormValidator.clearInputItems();
+  cardFormValidator.clearInputItems();
 }
 ///
 

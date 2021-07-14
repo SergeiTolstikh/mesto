@@ -7,7 +7,7 @@ export class Card {
         this._handleOpenPlacePopup = handleOpenPlacePopup;
     }
 
-    _createGalleryCard = () => {
+    _createGalleryCard() {
         const initialElement = document.querySelector(this._cardSelector).content.cloneNode(true); //выбранный контент клонировать
         initialElement.querySelector('.gallery__text').textContent = this._name;
         const elementImg = initialElement.querySelector('.gallery__image');
@@ -18,28 +18,25 @@ export class Card {
     }
 
     //Функция с событиями
-    _setCardEventListeners = (element) => {
-
-        element.querySelector('.gallery__delete-card').addEventListener('click', this._handleDeleteCard); //нажатие корзины (удалить карточку)
-
-        element.querySelector('.gallery__like').addEventListener('click', this._handleLikeClick); //нажатие "нравится" (поставить лайк)
-
-        element.querySelector('.gallery__image').addEventListener('click', () => { //нажатие на изображение (просмотр изображение в отдельном окне)
+    _setCardEventListeners(element) {
+        element.querySelector('.gallery__delete-card').addEventListener('click', this._handleDeleteCard);
+        element.querySelector('.gallery__like').addEventListener('click', this._handleLikeClick);
+        element.querySelector('.gallery__image').addEventListener('click', () => {
             this._handleOpenPlacePopup(this._name, this._link);
         });
     }
 
     //Удалить карточку
-    _handleDeleteCard = (event) => {
-        event.target.closest('.gallery__card').remove();
+    _handleDeleteCard(evt) {
+        evt.target.closest('.gallery__card').remove();
     }
 
     //Поставить/удалить лайк карточки
-    _handleLikeClick = (event) => {
-        event.target.classList.toggle('gallery__like_on');
+    _handleLikeClick(evt) {
+        evt.target.classList.toggle('gallery__like_on');
     }
 
-    createCard = () => {
+    createCard() {
         return this._createGalleryCard(this._link, this._name);
     }
 }

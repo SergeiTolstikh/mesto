@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +8,15 @@
     <title>Mesto</title>
     <link rel="stylesheet" href="./style/index.css">
 </head>
+
 <body>
 
     <div class="page">
 
         <header class="header">
-            
+
             <img src="./image/__logo.svg" class="header__logo" alt="Логотип сайт Место">
-            
+
         </header>
 
 
@@ -28,13 +30,13 @@
                 <button type="button" title="Редактировать профиль" class="profile__edit-button"></button>
                 <p class="profile__subtitle">Исследователь океана</p>
                 <button type="button" title="Добавить место" class="profile__add-button"></button>
-                
+
             </section>
 
 
             <section class="gallery">
             </section>
-                     
+
         </main>
 
 
@@ -46,26 +48,30 @@
 
 
         <div class="popup" id="profile-popup">
-            
+
             <div class="popup__container">
 
-                <form class="popup__form" name="profile-form" novalidate>
+                <form class="popup__form" name="profile-form" id="profile-popup-form" novalidate>
 
                     <button type="button" class="popup__close" title="Закрыть форму без сохранения"></button>
 
                     <h2 class="popup__title">Редактировать профиль</h2>
 
                     <fieldset class="popup__input-container">
-                      <input type="text" id="popup__nickname" required name="NameProfile" class="popup__input popup__input_item_name-profile-input" minlength="2" maxlength="40" placeholder="Имя">
-                      <span class="popup__error popup__nickname-error"></span>
-                      <input type="text" id="popup__info" required name="AboutProfile" class="popup__input popup__input_item_about-profile-input" minlength="2" maxlength="200" placeholder="О себе">
-                      <span class="popup__error popup__info-error"></span>
+                        <input type="text" id="popup__nickname" required name="NameProfile"
+                            class="popup__input popup__input_item_name-profile-input" minlength="2" maxlength="40"
+                            placeholder="Имя">
+                        <span class="popup__error popup__nickname-error"></span>
+                        <input type="text" id="popup__info" required name="AboutProfile"
+                            class="popup__input popup__input_item_about-profile-input" minlength="2" maxlength="200"
+                            placeholder="О себе">
+                        <span class="popup__error popup__info-error"></span>
                     </fieldset>
 
                     <button type="submit" class="popup__button" title="Сохранить изменения">Сохранить</button>
-         
+
                 </form>
-                  
+
 
             </div>
 
@@ -73,26 +79,30 @@
 
 
         <div class="popup" id="gallery-popup">
-            
+
             <div class="popup__container">
 
-                <form class="popup__form" name="place-form" novalidate>
+                <form class="popup__form" name="place-form" id="gallery-popup-form" novalidate>
 
                     <button type="button" class="popup__close" title="Закрыть форму без сохранения"></button>
 
                     <h2 class="popup__title">Новое место</h2>
 
                     <fieldset class="popup__input-container">
-                      <input type="text" id="popup__newplace" required name="NamePlace" class="popup__input popup__input_item_name-gallery-input" minlength="2" maxlength="30" placeholder="Название">
-                      <span class="popup__error popup__newplace-error"></span>
-                      <input type="url" id="popup__picture" required name="PictureURL" class="popup__input popup__input_item_url-gallery-input" placeholder="Ссылка на картинку">
-                      <span class="popup__error popup__picture-error"></span>
+                        <input type="text" id="popup__newplace" required name="NamePlace"
+                            class="popup__input popup__input_item_name-gallery-input" minlength="2" maxlength="30"
+                            placeholder="Название">
+                        <span class="popup__error popup__newplace-error"></span>
+                        <input type="url" id="popup__picture" required name="PictureURL"
+                            class="popup__input popup__input_item_url-gallery-input" placeholder="Ссылка на картинку">
+                        <span class="popup__error popup__picture-error"></span>
                     </fieldset>
 
-                    <button type="submit" id="popup-button-gallery" class="popup__button" title="Сохранить изменения">Сохранить</button>
-         
+                    <button type="submit" id="popup-button-gallery" class="popup__button"
+                        title="Сохранить изменения">Сохранить</button>
+
                 </form>
-                  
+
 
             </div>
 
@@ -100,42 +110,38 @@
 
 
         <div class="popup" id="overlay">
-            
+
             <div class="popup__container popup__container_overlay">
-              
-              <img class="popup__overlay-picture" src="#" alt="#">
-              <h2 class="popup__overlay-picture-name">#</h2>
-              <button type="button" class="popup__close popup__close_overlay"></button>
-            
+
+                <img class="popup__overlay-picture" src="#" alt="#">
+                <h2 class="popup__overlay-picture-name">#</h2>
+                <button type="button" class="popup__close popup__close_overlay"></button>
+
             </div>
-            
+
         </div>
 
-        
+
     </div>
- 
+
 
     <template class="gallery-template">
 
         <div class="gallery__card">
-            
-          <button class="gallery__delete-card" type="button"></button>
-          <img class="gallery__image" src="#" alt="#">
-          <h2 class="gallery__text"></h2>
-          <button class="gallery__like" type="button"></button>
+
+            <button class="gallery__delete-card" type="button"></button>
+            <img class="gallery__image" src="#" alt="#">
+            <h2 class="gallery__text"></h2>
+            <button class="gallery__like" type="button"></button>
 
         </div>
 
     </template>
 
-    <script src="./scripts/validate.js"></script>
 
-    
-    
-    <script type="module" src="./scripts/script.js"></script>
-    
+    <script type="module" src="./scripts/index.js"></script>
 
-    
+
 </body>
 
 </html>
