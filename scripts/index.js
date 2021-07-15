@@ -81,7 +81,7 @@ function handleClosePopup(namePopup) {
 ///
 
 //--Закрыть попап кликнув на оверлей
-function handleClosePopupOverlay() {
+function setClosePopupOverlay() {
   const popupArray = Array.from(document.querySelectorAll('.popup'));
   popupArray.forEach(function (popup) {
     popup.addEventListener('click', (evt) => {
@@ -92,7 +92,7 @@ function handleClosePopupOverlay() {
   });
 }
 
-handleClosePopupOverlay();
+setClosePopupOverlay();
 //--
 
 //--Закрыть попап нажатием клавиши Esc
@@ -140,8 +140,6 @@ function handleSubmitProfile(evt) {
 //Сохранить попап галереи добавив карточки на страницу
 function handleSubmitGallery(evt) { //передать при вызове
   evt.preventDefault(); //Эта строчка отменяет стандартную отправку формы.
-  const popupSubmitButton = document.querySelector('#popup-button-gallery');
-  const inactiveButtonClass = { inactiveButtonClass: 'popup__button_disabled' };
   const element = {
     name: nameGalleryInput.value,
     link: urlGalleryInput.value
@@ -149,7 +147,6 @@ function handleSubmitGallery(evt) { //передать при вызове
   galleryContainer.prepend(createCard(element)); //в начало контейнера результат работы функции createGalleryCard с параметрами.
   galleryPopup.querySelector('.popup__form').reset();
   handleClosePopup(galleryPopup);
-  disablesButton(popupSubmitButton, inactiveButtonClass);
 }
 ///
 
