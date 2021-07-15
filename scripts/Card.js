@@ -7,21 +7,21 @@ export class Card {
         this._handleOpenPlacePopup = handleOpenPlacePopup;
     }
 
-    _createGalleryCard() {
-        const initialElement = document.querySelector(this._cardSelector).content.cloneNode(true); //выбранный контент клонировать
-        initialElement.querySelector('.gallery__text').textContent = this._name;
-        const elementImg = initialElement.querySelector('.gallery__image');
-        elementImg.src = this._link;
-        elementImg.alt = this._name;
-        this._setCardEventListeners(initialElement); //Функция с событиями
-        return initialElement;
+
+    ///---
+    _getTemplate() {
+        const cardElement = document.querySelector(this._cardSelector).content.querySelector('.gallery__card').cloneNode(true);
+        return cardElement;
     }
 
+
+    ///---
+
     //Функция с событиями
-    _setCardEventListeners(element) {
-        element.querySelector('.gallery__delete-card').addEventListener('click', this._handleDeleteCard);
-        element.querySelector('.gallery__like').addEventListener('click', this._handleLikeClick);
-        element.querySelector('.gallery__image').addEventListener('click', () => {
+    _setCardEventListeners() {
+        this._deleteCard.addEventListener('click', this._handleDeleteCard);
+        this._likeButton.addEventListener('click', this._handleLikeClick);
+        this._imageElement.addEventListener('click', () => {
             this._handleOpenPlacePopup(this._name, this._link);
         });
     }
@@ -35,11 +35,21 @@ export class Card {
     _handleLikeClick(evt) {
         evt.target.classList.toggle('gallery__like_on');
     }
-
+    ///---
     createCard() {
-        return this._createGalleryCard(this._link, this._name);
+        this._getTemplateNew = this._getTemplate()
+        this._deleteCard = this._getTemplateNew.querySelector('.gallery__delete-card')
+        this._likeButton = this._getTemplateNew.querySelector('.gallery__like')
+        this._imageElement = this._getTemplateNew.querySelector('.gallery__image')
+        this._titleElement = this._getTemplateNew.querySelector('.gallery__text')
+
+        this._titleElement.textContent = this._name
+        this._imageElement.src = this._link
+        this._imageElement.alt = this._name
+        this._setCardEventListeners()
+        return this._getTemplateNew
     }
-}
+}   ///---
 
 export const initialCards = [
     {
