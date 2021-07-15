@@ -7,15 +7,12 @@ export class Card {
         this._handleOpenPlacePopup = handleOpenPlacePopup;
     }
 
-
-    ///---
+    //Клонировать содержимое шаблона
     _getTemplate() {
         const cardElement = document.querySelector(this._cardSelector).content.querySelector('.gallery__card').cloneNode(true);
         return cardElement;
     }
-
-
-    ///---
+    ///
 
     //Функция с событиями
     _setCardEventListeners() {
@@ -25,17 +22,21 @@ export class Card {
             this._handleOpenPlacePopup(this._name, this._link);
         });
     }
+    ///
 
     //Удалить карточку
     _handleDeleteCard(evt) {
         evt.target.closest('.gallery__card').remove();
     }
+    ///
 
     //Поставить/удалить лайк карточки
     _handleLikeClick(evt) {
         evt.target.classList.toggle('gallery__like_on');
     }
-    ///---
+    ///
+
+    //Создать карточку
     createCard() {
         this._getTemplateNew = this._getTemplate()
         this._deleteCard = this._getTemplateNew.querySelector('.gallery__delete-card')
@@ -49,7 +50,7 @@ export class Card {
         this._setCardEventListeners()
         return this._getTemplateNew
     }
-}   ///---
+}   ///
 
 export const initialCards = [
     {
