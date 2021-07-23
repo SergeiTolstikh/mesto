@@ -1,54 +1,30 @@
 import { FormValidator } from './FormValidator.js';
-import { Card, initialCards } from './Card.js';
-
-///---
-const config = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-}
-///---
-
-//Профиль
-const profileEditButton = document.querySelector('.profile__edit-button'); //переменная кнопки редактирования профиля
-const profileTitle = document.querySelector('.profile__title'); //переменная наименования профиля
-const profileSubtitle = document.querySelector('.profile__subtitle'); //переменная описания профиля
-///
-
-//Галерея
-const buttonAddPlusButton = document.querySelector('.profile__add-button'); //переменная кнопки добавить место +
-///
-
-//Заполняемая секция с изображениями галереи
-const galleryContainer = document.querySelector('.gallery');
-///
-
-//Попап Профиля
-const profilePopup = document.querySelector('#profile-popup'); //переменная попап профиля
-const profilePopupForm = profilePopup.querySelector('#profile-popup-form');
-const profilePopupCloseButton = profilePopup.querySelector('.popup__close'); //переменная кнопки закрыть попап профиля
-const nameProfileInput = document.querySelector('.popup__input_item_name-profile-input'); //переменная строки ввода "Имя"
-const aboutProfileInput = document.querySelector('.popup__input_item_about-profile-input'); //переменная строки ввода "О себе"
-///
-
-//Попап Галереи
-const galleryPopup = document.querySelector('#gallery-popup'); //переменная попап галереи
-const galleryPopupForm = galleryPopup.querySelector('#gallery-popup-form');
-const galleryPopupCloseButton = galleryPopup.querySelector('.popup__close'); //переменная кнопки закрыть попап галереи
-const nameGalleryInput = document.querySelector('.popup__input_item_name-gallery-input'); //переменная строки ввода "Название"
-const urlGalleryInput = document.querySelector('.popup__input_item_url-gallery-input'); //переменная строки ввода "Ссылка на картинку"
-///
-
-//Попап overlay просмотр фото крупно
-const galleryOverlay = document.querySelector('#overlay'); //переменная попап просмотра фото
-const galleryOverlayImage = document.querySelector('.popup__overlay-picture'); //изображение
-const galleryOverlayName = document.querySelector('.popup__overlay-picture-name'); //название изображения
-const overlayPopupCloseButton = galleryOverlay.querySelector('.popup__close'); //переменная кнопки закрыть попап overlay
-///
-
+import { Card } from './Card.js';
+import Section from './Section.js';
+import {
+  initialCards,
+  profileEditButton,
+  profileTitle,
+  profileSubtitle,
+  buttonAddPlusButton,
+  galleryContainer,
+  profilePopup,
+  profilePopupForm,
+  profilePopupCloseButton,
+  nameProfileInput,
+  aboutProfileInput,
+  galleryPopup,
+  galleryPopupForm,
+  galleryPopupCloseButton,
+  nameGalleryInput,
+  urlGalleryInput,
+  galleryOverlay,
+  galleryOverlayImage,
+  galleryOverlayName,
+  overlayPopupCloseButton,
+  config
+} from './constants.js'
+//console.log(config)
 //
 const profileFormValidator = new FormValidator(config, profilePopupForm);
 profileFormValidator.enableValidation(); //валидация попап профиля
@@ -56,20 +32,47 @@ profileFormValidator.enableValidation(); //валидация попап про�
 const cardFormValidator = new FormValidator(config, galleryPopupForm);
 cardFormValidator.enableValidation(); //валидация попап галереи
 ///
-
-//
+/*
+///
 initialCards.forEach(function (element) {
   const insertCard = createCard(element);
   galleryContainer.append(insertCard);
 });
 ///
-
+*/
 //создает экземпляр класса и возвращает карточку
 function createCard(element) {
   const card = new Card(element, '.gallery-template', handleOpenPlacePopup);
+  //console.log(card.createCard())
   return card.createCard();
+  
 }
 ///
+
+
+
+/*//создает экземпляр класса и возвращает карточку
+function genCard(element) {
+  const card = new Card(element, '.gallery-template', handleOpenPlacePopup);
+  return card;
+}
+///*/
+
+const section = new Section ({
+  items: initialCards,
+  renderer: (element) => {
+    //const card = new Card(element, '.gallery-template', handleOpenPlacePopup);
+    const cardBlank = createCard(element)
+    //console.log(bracard)
+    section.setItem(cardBlank);
+  }
+}, galleryContainer);
+
+section.renderItems();
+
+
+
+  //console.log(section)
 
 //Закрыть попап(ы)
 function handleClosePopup(namePopup) {
@@ -136,6 +139,7 @@ function handleSubmitProfile(evt) {
   handleClosePopup(profilePopup);
 }
 ///
+
 
 //Сохранить попап галереи добавив карточки на страницу
 function handleSubmitGallery(evt) { //передать при вызове

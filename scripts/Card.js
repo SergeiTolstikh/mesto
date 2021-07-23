@@ -1,3 +1,4 @@
+
 export class Card {
 
     constructor(data, cardSelector, handleOpenPlacePopup) {
@@ -5,6 +6,7 @@ export class Card {
         this._name = data.name;
         this._cardSelector = cardSelector;
         this._handleOpenPlacePopup = handleOpenPlacePopup;
+        //this.created = this.createCard()
     }
 
     //Клонировать содержимое шаблона
@@ -52,29 +54,3 @@ export class Card {
     }
 }   ///
 
-export const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
