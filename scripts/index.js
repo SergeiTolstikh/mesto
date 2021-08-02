@@ -1,30 +1,85 @@
 import { FormValidator } from './FormValidator.js';
-import { Card } from './Card.js';
+import Card from './Card.js';
 import Section from './Section.js';
-import {
-  initialCards,
-  profileEditButton,
-  profileTitle,
-  profileSubtitle,
-  buttonAddPlusButton,
-  galleryContainer,
-  profilePopup,
-  profilePopupForm,
-  profilePopupCloseButton,
-  nameProfileInput,
-  aboutProfileInput,
-  galleryPopup,
-  galleryPopupForm,
-  galleryPopupCloseButton,
-  nameGalleryInput,
-  urlGalleryInput,
-  galleryOverlay,
-  galleryOverlayImage,
-  galleryOverlayName,
-  overlayPopupCloseButton,
-  config
-} from './constants.js'
-//console.log(config)
+import PopupWithImage from './PopupWithImage.js';
+import Userinfo from './UserInfo.js';
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+///---
+const config = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}
+///---
+
+//Профиль
+const profileEditButton = document.querySelector('.profile__edit-button'); //переменная кнопки редактирования профиля
+const profileTitle = document.querySelector('.profile__title'); //переменная наименования профиля
+const profileSubtitle = document.querySelector('.profile__subtitle'); //переменная описания профиля
+///
+
+//Галерея
+const buttonAddPlusButton = document.querySelector('.profile__add-button'); //переменная кнопки добавить место +
+///
+
+//Заполняемая секция с изображениями галереи
+const galleryContainer = document.querySelector('.gallery');
+
+///
+
+//Попап Профиля
+const profilePopup = document.querySelector('#profile-popup'); //переменная попап профиля
+const profilePopupForm = profilePopup.querySelector('#profile-popup-form');
+//const profilePopupCloseButton = profilePopup.querySelector('.popup__close'); //переменная кнопки закрыть попап профиля
+const nameProfileInput = document.querySelector('.popup__input_item_name-profile-input'); //переменная строки ввода "Имя"
+const aboutProfileInput = document.querySelector('.popup__input_item_about-profile-input'); //переменная строки ввода "О себе"
+///
+
+//Попап Галереи
+const galleryPopup = document.querySelector('#gallery-popup'); //переменная попап галереи
+const galleryPopupForm = galleryPopup.querySelector('#gallery-popup-form');
+//const galleryPopupCloseButton = galleryPopup.querySelector('.popup__close'); //переменная кнопки закрыть попап галереи
+//const nameGalleryInput = document.querySelector('.popup__input_item_name-gallery-input'); //переменная строки ввода "Название"
+//const urlGalleryInput = document.querySelector('.popup__input_item_url-gallery-input'); //переменная строки ввода "Ссылка на картинку"
+///
+
+//Попап overlay просмотр фото крупно
+const galleryOverlay = document.querySelector('#overlay'); //переменная попап просмотра фото
+//const galleryOverlayImage = document.querySelector('.popup__overlay-picture'); //изображение
+//const galleryOverlayName = document.querySelector('.popup__overlay-picture-name'); //название изображения
+//const overlayPopupCloseButton = galleryOverlay.querySelector('.popup__close'); //переменная кнопки закрыть попап overlay
+///
+import PopupWithForm from './PopupWithForm.js';
+
 //
 const profileFormValidator = new FormValidator(config, profilePopupForm);
 profileFormValidator.enableValidation(); //валидация попап профиля
@@ -32,136 +87,77 @@ profileFormValidator.enableValidation(); //валидация попап про�
 const cardFormValidator = new FormValidator(config, galleryPopupForm);
 cardFormValidator.enableValidation(); //валидация попап галереи
 ///
-/*
-///
-initialCards.forEach(function (element) {
-  const insertCard = createCard(element);
-  galleryContainer.append(insertCard);
-});
-///
-*/
+
 //создает экземпляр класса и возвращает карточку
 function createCard(element) {
-  const card = new Card(element, '.gallery-template', handleOpenPlacePopup);
-  //console.log(card.createCard())
+  const card = new Card({ name: element.name, link: element.link }, '.gallery-template', handleCardClick);
   return card.createCard();
-  
+
 }
 ///
 
-
-
-/*//создает экземпляр класса и возвращает карточку
-function genCard(element) {
-  const card = new Card(element, '.gallery-template', handleOpenPlacePopup);
-  return card;
-}
-///*/
-
-const section = new Section ({
+///
+const section = new Section({
   items: initialCards,
   renderer: (element) => {
-    //const card = new Card(element, '.gallery-template', handleOpenPlacePopup);
     const cardBlank = createCard(element)
-    //console.log(bracard)
     section.setItem(cardBlank);
   }
 }, galleryContainer);
 
 section.renderItems();
-
-
-
-  //console.log(section)
-
-//Закрыть попап(ы)
-function handleClosePopup(namePopup) {
-  namePopup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', handlePressEsc);
-  profileFormValidator.clearInputItems();
-  cardFormValidator.clearInputItems();
-}
-///
-
-//--Закрыть попап кликнув на оверлей
-function setClosePopupOverlay() {
-  const popupArray = Array.from(document.querySelectorAll('.popup'));
-  popupArray.forEach(function (popup) {
-    popup.addEventListener('click', (evt) => {
-      if (evt.target.classList.contains('popup')) {
-        handleClosePopup(popup);
-      }
-    });
-  });
-}
-
-setClosePopupOverlay();
-//--
-
-//--Закрыть попап нажатием клавиши Esc
-function handlePressEsc(evt) {
-  if (evt.key === "Escape") {
-    const popupActive = document.querySelector('.popup_opened');
-    handleClosePopup(popupActive);
-  }
-}
-//--
-
-//Открыть попап(ы)
-function handleOpenPopup(namePopup) {
-  namePopup.classList.add('popup_opened');
-  document.addEventListener('keydown', handlePressEsc);
-}
-///
-
-//Открыть попап профиля
-function handleOpenProfilePopup() {
-  handleOpenPopup(profilePopup); //класс открытия + идентификатор попапа профиля
-  nameProfileInput.value = profileTitle.textContent;
-  aboutProfileInput.value = profileSubtitle.textContent;
-}
 ///
 
 //Открыть попап просмотра фото в отдельном окне
-function handleOpenPlacePopup(name, img) {
-  handleOpenPopup(galleryOverlay); //класс открытия + идентификатор попапа overlay
-  galleryOverlayImage.src = img;
-  galleryOverlayImage.alt = name;
-  galleryOverlayName.textContent = name;
+function handleCardClick(img, name) {
+  const popupWithImage = new PopupWithImage({ src: img, alt: name }, galleryOverlay)
+  popupWithImage.setEventListeners();
+  popupWithImage.open();
 }
 ///
 
-//Сохранить попап профиля
-function handleSubmitProfile(evt) {
-  evt.preventDefault(); //отмену стандартной отправки формы
-  profileTitle.textContent = nameProfileInput.value; //введённые значение
-  profileSubtitle.textContent = aboutProfileInput.value; //введённые значение                                                                                      
-  handleClosePopup(profilePopup);
-}
+///
+const userInfo = new Userinfo({ profileNameSelector: profileTitle, profileDescriptionSelector: profileSubtitle });
 ///
 
-
-//Сохранить попап галереи добавив карточки на страницу
-function handleSubmitGallery(evt) { //передать при вызове
-  evt.preventDefault(); //Эта строчка отменяет стандартную отправку формы.
-  const element = {
-    name: nameGalleryInput.value,
-    link: urlGalleryInput.value
-  };
-  galleryContainer.prepend(createCard(element)); //в начало контейнера результат работы функции createGalleryCard с параметрами.
-  galleryPopup.querySelector('.popup__form').reset();
-  handleClosePopup(galleryPopup);
-}
+//Создаем объекты класса Popup
+const profileEditPopup = new PopupWithForm(profilePopup, (inputValues) => {
+  userInfo.setUserInfo(inputValues);
+  console.log(profileEditPopup);
+  profileEditPopup.close();
+});
+profileEditPopup.setEventListeners();
 ///
 
-//Слушатели
-profileEditButton.addEventListener('click', handleOpenProfilePopup); //кнопка попап_профиля_открыть
-profilePopupCloseButton.addEventListener('click', () => handleClosePopup(profilePopup)); //кнопка попап_профиля_закрыть
-profilePopup.addEventListener('submit', handleSubmitProfile); //кнопка попап_профиля_сохранить
+///
+const addElementPopup = new PopupWithForm(galleryPopup, (values) => {
+  const addCard = createCard({ name: values.NamePlace, link: values.PictureURL });
 
-buttonAddPlusButton.addEventListener('click', () => handleOpenPopup(galleryPopup)); //кнопка попап_место_открыть
-galleryPopupCloseButton.addEventListener('click', () => handleClosePopup(galleryPopup)); //кнопка попап_место_закрыть
-galleryPopup.addEventListener('submit', handleSubmitGallery); //кнопка попап_место_сохранить
+  const galleryText = addCard.querySelector('.gallery__text');
+  galleryText.textContent = values.NamePlace;
 
-overlayPopupCloseButton.addEventListener('click', () => handleClosePopup(galleryOverlay)); //кнопка попап_overlay_закрыть
+  section.setItem(addCard);
+
+  addElementPopup.close();
+})
+
+addElementPopup.setEventListeners();
+///
+
+///
+profileEditButton.addEventListener('click', () => {
+  profileFormValidator.clearInputItems();
+  const profileData = userInfo.getUserInfo();
+  nameProfileInput.value = profileData.name;
+  aboutProfileInput.value = profileData.description;
+
+  profileEditPopup.open();
+});
+///
+
+///
+buttonAddPlusButton.addEventListener('click', () => {
+  cardFormValidator.clearInputItems();
+  addElementPopup.open();
+});
 ///
