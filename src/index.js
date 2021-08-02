@@ -1,8 +1,8 @@
-import { FormValidator } from './FormValidator.js';
-import Card from './Card.js';
-import Section from './Section.js';
-import PopupWithImage from './PopupWithImage.js';
-import Userinfo from './UserInfo.js';
+import { FormValidator } from '../scripts/FormValidator.js';
+import Card from '../scripts/Card.js';
+import Section from '../scripts/Section.js';
+import PopupWithImage from '../scripts/PopupWithImage.js';
+import Userinfo from '../scripts/UserInfo.js';
 const initialCards = [
   {
     name: 'Архыз',
@@ -78,7 +78,7 @@ const galleryOverlay = document.querySelector('#overlay'); //переменна�
 //const galleryOverlayName = document.querySelector('.popup__overlay-picture-name'); //название изображения
 //const overlayPopupCloseButton = galleryOverlay.querySelector('.popup__close'); //переменная кнопки закрыть попап overlay
 ///
-import PopupWithForm from './PopupWithForm.js';
+import PopupWithForm from '../scripts/PopupWithForm.js';
 
 //
 const profileFormValidator = new FormValidator(config, profilePopupForm);
