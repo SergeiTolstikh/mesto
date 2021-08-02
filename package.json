@@ -4,7 +4,7 @@
   "description": "----------\r ## Проектная работа №8 по специальности Web-разработчик на Яндекс Практикуме. \r ## В этой проектной работе я продолжил рефакторинг.. \r ### Применяемые технологии\r #### 1. css grid\r #### 2. css flex\r #### 3. css функция calc\r #### 4. css медиазапросы\r #### 5. css относительные размеры\r #### 6. Массивы\r #### 7. DOM\r #### 8. JavaScript\r #### 9. Объекты\r #### 10. Валидация форм с помощью JavaScript\r #### 11. Обработка событий\r #### 12. Модули js\r #### 13. Объе́ктно-ориенти́рованное программи́рование (ООП)\r #### 14. Webpack",
   "main": "index.js",
   "scripts": {
-    "build": "rd /s /q dist && webpack  --mode production",
+    "build": "webpack  --mode production",
     "dev": "webpack serve"
   },
   "repository": {
@@ -22,6 +22,8 @@
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.9",
     "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "html-webpack-plugin": "^5.3.2",
     "webpack": "^5.48.0",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
