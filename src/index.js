@@ -1,32 +1,40 @@
-import { FormValidator } from '../scripts/FormValidator.js';
-import Card from '../scripts/Card.js';
-import Section from '../scripts/Section.js';
-import PopupWithImage from '../scripts/PopupWithImage.js';
-import Userinfo from '../scripts/UserInfo.js';
+import { FormValidator } from './scripts/FormValidator.js';
+import Card from './scripts/Card.js';
+import Section from './scripts/Section.js';
+import PopupWithImage from './scripts/PopupWithImage.js';
+import Userinfo from './scripts/UserInfo.js';
+
+import baikalimage from './image/element-baikal.jpg';
+import jakutiaimage from './image/element-jakutiya.jpg';
+import kamchatka from './image/element-kamchatka.jpg';
+import povoljie from './image/element-povoljie.jpg';
+import sachalin from './image/element-sachalin.jpg';
+import ural from './image/element-ural.jpg';
+
 const initialCards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: 'Байкал',
+    link: baikalimage
   },
   {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    name: 'Якутия',
+    link: jakutiaimage
   },
   {
     name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    link: kamchatka
   },
   {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: 'Поволжье',
+    link: povoljie
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    name: 'Сахалин',
+    link: sachalin
+  },
+  {
+    name: 'Урал',
+    link: ural
   }
 ];
 
@@ -78,7 +86,7 @@ const galleryOverlay = document.querySelector('#overlay'); //переменна�
 //const galleryOverlayName = document.querySelector('.popup__overlay-picture-name'); //название изображения
 //const overlayPopupCloseButton = galleryOverlay.querySelector('.popup__close'); //переменная кнопки закрыть попап overlay
 ///
-import PopupWithForm from '../scripts/PopupWithForm.js';
+import PopupWithForm from './scripts/PopupWithForm.js';
 
 //
 const profileFormValidator = new FormValidator(config, profilePopupForm);
