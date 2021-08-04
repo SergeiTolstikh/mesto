@@ -1,16 +1,16 @@
-import './style/index.css';
-import { FormValidator } from './scripts/FormValidator.js';
-import Card from './scripts/Card.js';
-import Section from './scripts/Section.js';
-import PopupWithImage from './scripts/PopupWithImage.js';
-import Userinfo from './scripts/UserInfo.js';
+import './index.css';
+import { FormValidator } from '../components/FormValidator.js';
+import Card from '../components/Card.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Userinfo from '../components/UserInfo.js';
 
-import baikalimage from './image/element-baikal.jpg';
-import jakutiaimage from './image/element-jakutiya.jpg';
-import kamchatka from './image/element-kamchatka.jpg';
-import povoljie from './image/element-povoljie.jpg';
-import sachalin from './image/element-sachalin.jpg';
-import ural from './image/element-ural.jpg';
+import baikalimage from '../images/element-baikal.jpg';
+import jakutiaimage from '../images/element-jakutiya.jpg';
+import kamchatka from '../images/element-kamchatka.jpg';
+import povoljie from '../images/element-povoljie.jpg';
+import sachalin from '../images/element-sachalin.jpg';
+import ural from '../images/element-ural.jpg';
 
 const initialCards = [
   {
@@ -87,7 +87,7 @@ const galleryOverlay = document.querySelector('#overlay'); //переменна�
 //const galleryOverlayName = document.querySelector('.popup__overlay-picture-name'); //название изображения
 //const overlayPopupCloseButton = galleryOverlay.querySelector('.popup__close'); //переменная кнопки закрыть попап overlay
 ///
-import PopupWithForm from './scripts/PopupWithForm.js';
+import PopupWithForm from '../components/PopupWithForm.js';
 
 //
 const profileFormValidator = new FormValidator(config, profilePopupForm);
