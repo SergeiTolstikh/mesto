@@ -5,37 +5,37 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Userinfo from '../components/UserInfo.js';
 
-import baikalimage from '../images/element-baikal.jpg';
-import jakutiaimage from '../images/element-jakutiya.jpg';
-import kamchatka from '../images/element-kamchatka.jpg';
-import povoljie from '../images/element-povoljie.jpg';
-import sachalin from '../images/element-sachalin.jpg';
-import ural from '../images/element-ural.jpg';
+import baikalImage from '../images/element-baikal.jpg';
+import jakutiaImage from '../images/element-jakutiya.jpg';
+import kamchatkaImage from '../images/element-kamchatka.jpg';
+import povoljieImage from '../images/element-povoljie.jpg';
+import sachalinImage from '../images/element-sachalin.jpg';
+import uralImage from '../images/element-ural.jpg';
 
 const initialCards = [
   {
     name: 'Байкал',
-    link: baikalimage
+    link: baikalImage
   },
   {
     name: 'Якутия',
-    link: jakutiaimage
+    link: jakutiaImage
   },
   {
     name: 'Камчатка',
-    link: kamchatka
+    link: kamchatkaImage
   },
   {
     name: 'Поволжье',
-    link: povoljie
+    link: povoljieImage
   },
   {
     name: 'Сахалин',
-    link: sachalin
+    link: sachalinImage
   },
   {
     name: 'Урал',
-    link: ural
+    link: uralImage
   }
 ];
 
@@ -57,7 +57,7 @@ const profileSubtitle = document.querySelector('.profile__subtitle'); //пере
 ///
 
 //Галерея
-const buttonAddPlusButton = document.querySelector('.profile__add-button'); //переменная кнопки добавить место +
+const buttonAddPlus = document.querySelector('.profile__add-button'); //переменная кнопки добавить место +
 ///
 
 //Заполняемая секция с изображениями галереи
@@ -68,7 +68,6 @@ const galleryContainer = document.querySelector('.gallery');
 //Попап Профиля
 const profilePopup = document.querySelector('#profile-popup'); //переменная попап профиля
 const profilePopupForm = profilePopup.querySelector('#profile-popup-form');
-//const profilePopupCloseButton = profilePopup.querySelector('.popup__close'); //переменная кнопки закрыть попап профиля
 const nameProfileInput = document.querySelector('.popup__input_item_name-profile-input'); //переменная строки ввода "Имя"
 const aboutProfileInput = document.querySelector('.popup__input_item_about-profile-input'); //переменная строки ввода "О себе"
 ///
@@ -76,16 +75,9 @@ const aboutProfileInput = document.querySelector('.popup__input_item_about-profi
 //Попап Галереи
 const galleryPopup = document.querySelector('#gallery-popup'); //переменная попап галереи
 const galleryPopupForm = galleryPopup.querySelector('#gallery-popup-form');
-//const galleryPopupCloseButton = galleryPopup.querySelector('.popup__close'); //переменная кнопки закрыть попап галереи
-//const nameGalleryInput = document.querySelector('.popup__input_item_name-gallery-input'); //переменная строки ввода "Название"
-//const urlGalleryInput = document.querySelector('.popup__input_item_url-gallery-input'); //переменная строки ввода "Ссылка на картинку"
-///
 
 //Попап overlay просмотр фото крупно
 const galleryOverlay = document.querySelector('#overlay'); //переменная попап просмотра фото
-//const galleryOverlayImage = document.querySelector('.popup__overlay-picture'); //изображение
-//const galleryOverlayName = document.querySelector('.popup__overlay-picture-name'); //название изображения
-//const overlayPopupCloseButton = galleryOverlay.querySelector('.popup__close'); //переменная кнопки закрыть попап overlay
 ///
 import PopupWithForm from '../components/PopupWithForm.js';
 
@@ -106,20 +98,23 @@ function createCard(element) {
 ///
 
 ///
-const section = new Section({
+const sectionAddingCard = new Section({
   items: initialCards,
   renderer: (element) => {
     const cardBlank = createCard(element)
-    section.setItem(cardBlank);
+    sectionAddingCard.setItem(cardBlank);
   }
 }, galleryContainer);
 
-section.renderItems();
+sectionAddingCard.renderItems();
 ///
 
 //Открыть попап просмотра фото в отдельном окне
+const popupWithImage = new PopupWithImage(galleryOverlay)
+
 function handleCardClick(img, name) {
-  const popupWithImage = new PopupWithImage({ src: img, alt: name }, galleryOverlay)
+  popupWithImage.src = img;
+  popupWithImage.alt = name;
   popupWithImage.setEventListeners();
   popupWithImage.open();
 }
@@ -132,21 +127,14 @@ const userInfo = new Userinfo({ profileNameSelector: profileTitle, profileDescri
 //Создаем объекты класса Popup
 const profileEditPopup = new PopupWithForm(profilePopup, (inputValues) => {
   userInfo.setUserInfo(inputValues);
-  console.log(profileEditPopup);
-  profileEditPopup.close();
 });
 profileEditPopup.setEventListeners();
 ///
 
 ///
 const addElementPopup = new PopupWithForm(galleryPopup, (values) => {
-  const addCard = createCard({ name: values.NamePlace, link: values.PictureURL });
-
-  const galleryText = addCard.querySelector('.gallery__text');
-  galleryText.textContent = values.NamePlace;
-
-  section.setItem(addCard);
-
+  const cardCreated = createCard({ name: values.namePlace, link: values.pictureURL });
+  sectionAddingCard.setItem(cardCreated);
   addElementPopup.close();
 })
 
@@ -165,7 +153,7 @@ profileEditButton.addEventListener('click', () => {
 ///
 
 ///
-buttonAddPlusButton.addEventListener('click', () => {
+buttonAddPlus.addEventListener('click', () => {
   cardFormValidator.clearInputItems();
   addElementPopup.open();
 });
