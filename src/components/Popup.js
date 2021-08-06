@@ -20,11 +20,9 @@ export default class Popup {
     };
 
     setEventListeners() {
-        const popupCloseButton = this._popupElement.querySelector('.popup__close');
-        popupCloseButton.addEventListener('click', () => this.close());
+        const popupOverlayClose = this._popupElement.querySelector('.popup__close');
+        popupOverlayClose.addEventListener('click', () => this.close());
 
-
-        const popupOverlayClose = document.querySelectorAll('.popup');
-        popupOverlayClose.forEach((evt) => { evt.addEventListener('click', (evt) => { if (evt.target.classList.contains('popup')) { this.close() } }) })
-    }
+        this._popupElement.addEventListener('click', (evt) => { if (evt.target.classList.contains('popup')) { this.close() } });
+    } 
 };

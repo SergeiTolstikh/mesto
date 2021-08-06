@@ -3,7 +3,7 @@ import Popup from "./Popup.js";
 
 export default class PopupWithImage extends Popup {
     constructor(popupElement) {
-        super(popupElement);        
+        super(popupElement);
     }
 
     open() {
@@ -11,7 +11,7 @@ export default class PopupWithImage extends Popup {
         image.setAttribute("src", this.src);
         image.setAttribute("alt", this.alt);
         const imageName = this._popupElement.querySelector('.popup__overlay-picture-name');
-        imageName.textContent = this._alt;
+        imageName.textContent = this.alt;
         super.open();
     }
 }
