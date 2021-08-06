@@ -90,23 +90,28 @@ cardFormValidator.enableValidation(); //валидация попап галер
 ///
 
 //создает экземпляр класса и возвращает карточку
-function createCard(element) {
-  const card = new Card({ name: element.name, link: element.link }, '.gallery-template', handleCardClick);
+function createNewCard(element) {
+  const card = new Card(element, '.gallery-template', handleCardClick);
   return card.createCard();
+}
+///
 
+//наполняет созданную карточку подставляя параметры
+function fillCard(item) {
+  const cardBlank = createNewCard({ name: item.name, link: item.link });
+  cardsSection.setItem(cardBlank);
 }
 ///
 
 ///
-const sectionAddingCard = new Section({
+const cardsSection = new Section({
   items: initialCards,
-  renderer: (element) => {
-    const cardBlank = createCard(element)
-    sectionAddingCard.setItem(cardBlank);
+  renderer: (item) => {
+    fillCard(item)
   }
 }, galleryContainer);
 
-sectionAddingCard.renderItems();
+cardsSection.renderItems();
 ///
 
 //Открыть попап просмотра фото в отдельном окне
@@ -118,6 +123,7 @@ function handleCardClick(img, name) {
   popupWithImage.setEventListeners();
   popupWithImage.open();
 }
+
 ///
 
 ///
@@ -132,12 +138,10 @@ profileEditPopup.setEventListeners();
 ///
 
 ///
-const addElementPopup = new PopupWithForm(galleryPopup, (values) => {
-  const cardCreated = createCard({ name: values.namePlace, link: values.pictureURL });
-  sectionAddingCard.setItem(cardCreated);
+const addElementPopup = new PopupWithForm(galleryPopup, (item) => {
+  fillCard(item);
   addElementPopup.close();
 })
-
 addElementPopup.setEventListeners();
 ///
 

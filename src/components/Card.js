@@ -27,7 +27,7 @@ export default class Card {
     //Удалить карточку
     _handleDeleteCard = () => {
         this._newCardElement.remove();
-        return null
+        this._newCardElement = null;
     }
     ///
 
