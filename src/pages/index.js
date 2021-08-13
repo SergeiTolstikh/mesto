@@ -97,7 +97,7 @@ function createNewCard(element) {
 ///
 
 //наполняет созданную карточку подставляя параметры
-function fillCard(item) {
+function renderCard(item) {
   const cardBlank = createNewCard({ name: item.name, link: item.link });
   cardsSection.setItem(cardBlank);
 }
@@ -107,7 +107,7 @@ function fillCard(item) {
 const cardsSection = new Section({
   items: initialCards,
   renderer: (item) => {
-    fillCard(item)
+    renderCard(item)
   }
 }, galleryContainer);
 
@@ -120,9 +120,9 @@ const popupWithImage = new PopupWithImage(galleryOverlay)
 function handleCardClick(img, name) {
   popupWithImage.src = img;
   popupWithImage.alt = name;
-  popupWithImage.setEventListeners();
   popupWithImage.open();
 }
+popupWithImage.setEventListeners();
 
 ///
 
@@ -139,8 +139,7 @@ profileEditPopup.setEventListeners();
 
 ///
 const addElementPopup = new PopupWithForm(galleryPopup, (item) => {
-  fillCard(item);
-  addElementPopup.close();
+  renderCard(item);
 })
 addElementPopup.setEventListeners();
 ///
