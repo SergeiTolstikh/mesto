@@ -9,6 +9,7 @@
     grid-column: -1/-2;
     align-self: center;
     margin: auto;
+    margin-top: 22px;
     outline: none;
     cursor: pointer;
 }
