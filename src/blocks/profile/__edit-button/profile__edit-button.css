@@ -11,7 +11,8 @@
     margin: 0 0 21px 18px;
     grid-column: 3/4;
     grid-row: 2/3;
-    cursor: pointer; /*исправлено*/
+    cursor: pointer;
+    /*исправлено*/
 }
 
 .profile__edit-button:hover {
@@ -38,6 +39,7 @@
 
 @media screen and (max-width: 425px) {
     .profile__edit-button {
-        grid-column: 3/4;
+        grid-column: 5/6;
+        grid-row: 3/4;
     }
 }

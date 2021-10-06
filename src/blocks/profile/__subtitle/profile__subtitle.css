@@ -34,8 +34,9 @@
 
 @media screen and (max-width:425px) {
     .profile__subtitle {
-        grid-column: 2/3;
+        grid-column: 1/6;
+        grid-row: 3/4;
+        justify-self: center;
         margin-left: 0;
-        justify-self: center;     
     }
 }

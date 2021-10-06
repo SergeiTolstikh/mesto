@@ -1,5 +1,6 @@
 .profile__add-button {
-    background-image: url(../../../images/AddButton.svg); /*исправлено*/
+    background-image: url(../../../images/AddButton.svg);
+    /*исправлено*/
     background-size: 22px;
     background-color: transparent;
     background-position: 50%;
@@ -12,11 +13,13 @@
     grid-row: 2/3;
     justify-self: end;
     align-self: center;
-    cursor: pointer; /*исправлено*/
+    cursor: pointer;
+    /*исправлено*/
 }
 
 .profile__add-button:hover {
-    opacity: 0.6;  /*исправлено*/
+    opacity: 0.6;
+    /*исправлено*/
     transition: 0.3s;
 }
 
@@ -37,14 +40,13 @@
         height: 50px;
         justify-self: center;
         align-self: end;
-        
     }
 }
 
 @media screen and (max-width:425px) {
     .profile__add-button {
-        grid-column: 1/4;
-        grid-row: 3/4;
+        grid-column: 1/6;
+        grid-row: 4/5;
     }
 }
 

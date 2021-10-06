@@ -25,7 +25,7 @@
             <section class="profile">
 
                 <img src="<%=require('./images/custo.jpg')%>" class="profile__image" alt="Изображение профиля">
-
+                <button type="button" class="profile__edit-avatar" title="Сменить аватар"></button>
                 <h1 class="profile__title">Жак-Ив Кусто</h1>
                 <button type="button" title="Редактировать профиль" class="profile__edit-button"></button>
                 <p class="profile__subtitle">Исследователь океана</p>
@@ -119,6 +119,33 @@
 
             </div>
 
+        </div>
+
+        <div class="popup popup__delete-confirm" id="popup-delete-confirm">
+            <div class="popup__container">
+                <form class="popup__form popup__form_modificator" name="delete">
+                    <button type="button" class="popup__close"></button>
+                    <h2 class="popup__title">Вы уверены?</h2>
+                    <button type="submit" id="popup-button-delete-confirm" class="popup__button popup__button_confirm"
+                        title="Сохранить изменения">Да</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="popup" id="popup-avatar">
+            <div class="popup__container">
+                <form class="popup__form popup__form_modificator" name="avatar" novalidate>
+                    <button type="button" class="popup__close"></button>
+                    <h2 class="popup__title">Обновить аватар</h2>
+                    <fieldset class="popup__input-container">
+                        <input id="avatar-input" type="url" name="avatar" class="popup__input"
+                            placeholder="Ссылка на аватар" required>
+                        <span class="popup__error"></span>
+                    </fieldset>
+                    <button type="submit" id="popup-button-avatar" class="popup__button"
+                        title="Сохранить изменения">Сохранить</button>
+                </form>
+            </div>
         </div>
 
 

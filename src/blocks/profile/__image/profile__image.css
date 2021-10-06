@@ -2,19 +2,20 @@
     max-width: 168.75px;
     max-height: 120px;
     border-radius: 100%;
-    grid-row: 1/4;    
+    grid-row: 1/4;
+    grid-column: 1/2;
 }
 
 @media screen and (max-width:635px) {
-    .profile__image {   
-        grid-column: 2/3;          
-    }                      
+    .profile__image {
+        grid-column: 2/3;
+    }
 }
 
 @media screen and (max-width:425px) {
     .profile__image {
+        grid-column: 3/4;
+        grid-row: 1/2;
         margin: 0 auto 26px;
-        grid-column: 1/4;
-        grid-row: 1/2;               
     }
 }
