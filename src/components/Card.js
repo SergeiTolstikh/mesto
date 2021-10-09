@@ -1,10 +1,11 @@
 export default class Card {
 
-    constructor(data, cardSelector, handleCardClick) {
+    constructor(data, cardSelector, handleCardClick, handleOpenConfirmPopup) {
         this._link = data.link;
         this._name = data.name;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
+        this._handleOpenConfirmPopup = handleOpenConfirmPopup;
     }
 
     //Клонировать содержимое шаблона
@@ -14,7 +15,7 @@ export default class Card {
     }
     ///
 
-    //Функция с событиями
+    /*//Функция с событиями
     _setCardEventListeners() {
         this._deleteCardButton.addEventListener('click', this._handleDeleteCard);
         this._likeButton.addEventListener('click', this._handleLikeClick);
@@ -23,15 +24,29 @@ export default class Card {
         });
     }
     ///
-
+    
     //Удалить карточку
-    _handleDeleteCard = () => {
+    _handleDeleteCard() {
         this._newCardElement.remove();
         this._newCardElement = null;
         console.log(this._newCardElement)
     }
-    ///
+    ///*/
 
+    deleteCard(evt) {
+        evt.target.closest(".gallery__card").remove();
+      }
+
+    //Функция с событиями
+    _setCardEventListeners() {
+        this._deleteCardButton.addEventListener('click', this._handleOpenConfirmPopup);
+        this._likeButton.addEventListener('click', this._handleLikeClick);
+        this._imageElement.addEventListener('click', () => {
+            this._handleCardClick(this._link, this._name);
+        });
+    }
+    ///
+    
     //Поставить/удалить лайк карточки
     _handleLikeClick(evt) {
         evt.target.classList.toggle('gallery__like_on');
@@ -53,4 +68,3 @@ export default class Card {
         return this._newCardElement;
     }
 }   ///
-

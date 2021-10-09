@@ -79,7 +79,13 @@ const galleryPopupForm = galleryPopup.querySelector('#gallery-popup-form');
 //Попап overlay просмотр фото крупно
 const galleryOverlay = document.querySelector('#overlay'); //переменная попап просмотра фото
 ///
+
+//Попап Confirm
+const confirmPopup = document.querySelector('#popup-delete-confirm');
+///
+
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 
 //
 const profileFormValidator = new FormValidator(config, profilePopupForm);
@@ -91,10 +97,19 @@ cardFormValidator.enableValidation(); //валидация попап галер
 
 //создает экземпляр класса и возвращает карточку
 function createNewCard(element) {
-  const card = new Card(element, '.gallery-template', handleCardClick);
+  const card = new Card(element, '.gallery-template', handleCardClick, handleOpenConfirmPopup);
+
+  //попап подствердить удаление карточки
+  function handleOpenConfirmPopup(evt) {
+    const applyConfirm = new PopupWithConfirmation(confirmPopup, () => { card.deleteCard(evt) });
+    applyConfirm.open();
+    applyConfirm.setEventListeners();
+  }
+
   return card.createCard();
 }
 ///
+
 
 //наполняет созданную карточку подставляя параметры
 function renderCard(item) {
@@ -144,6 +159,11 @@ const addElementPopup = new PopupWithForm(galleryPopup, (item) => {
 addElementPopup.setEventListeners();
 ///
 
+//////
+
+
+//////
+
 ///
 profileEditButton.addEventListener('click', () => {
   profileFormValidator.clearInputItems();
@@ -161,3 +181,6 @@ buttonAddPlus.addEventListener('click', () => {
   addElementPopup.open();
 });
 ///
+
+
+const RR = 5;
