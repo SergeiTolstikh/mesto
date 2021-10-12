@@ -54,6 +54,13 @@ const config = {
 const profileEditButton = document.querySelector('.profile__edit-button'); //переменная кнопки редактирования профиля
 const profileTitle = document.querySelector('.profile__title'); //переменная наименования профиля
 const profileSubtitle = document.querySelector('.profile__subtitle'); //переменная описания профиля
+
+
+const profileEditAvatar = document.querySelector('.profile__edit-avatar'); //переменная кнопки редактирования картинки аватара
+const popupAvatar = document.querySelector('#popup-avatar');
+const popupAvatarInput = document.querySelector('#popup__avatar-input')
+
+const avatarPicture = document.querySelector('.profile__image');///////////////////
 ///
 
 //Галерея
@@ -93,6 +100,9 @@ profileFormValidator.enableValidation(); //валидация попап про�
 
 const cardFormValidator = new FormValidator(config, galleryPopupForm);
 cardFormValidator.enableValidation(); //валидация попап галереи
+
+const avatarFormValidator = new FormValidator(config, popupAvatar);
+avatarFormValidator.enableValidation();
 ///
 
 //создает экземпляр класса и возвращает карточку
@@ -182,5 +192,9 @@ buttonAddPlus.addEventListener('click', () => {
 });
 ///
 
+profileEditAvatar.addEventListener('click', () => { avatarFormValidator.clearInputItems(); avatarEditPicture.open() });
 
-const RR = 5;
+const avatarEditPicture = new PopupWithForm(popupAvatar, () => {
+  avatarPicture.src = popupAvatarInput.value;
+});
+avatarEditPicture.setEventListeners();
