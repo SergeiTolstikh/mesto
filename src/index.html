@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mesto</title>
-    <!--<link rel="stylesheet" href="./style/index.css">-->
 </head>
 
 <body>
@@ -24,12 +23,12 @@
 
             <section class="profile">
 
-                <img src="<%=require('./images/custo.jpg')%>" class="profile__image" alt="Изображение профиля">
+                <img src="#" class="profile__image" alt="Изображение профиля">
                 <button type="button" class="profile__edit-avatar" title="Сменить аватар"></button>
-                <h1 class="profile__title">Жак-Ив Кусто</h1>
+                <h1 class="profile__title"></h1>
                 <button type="button" title="Редактировать профиль" class="profile__edit-button"></button>
-                <p class="profile__subtitle">Исследователь океана</p>
-                <button type="button" title="Добавить место" class="profile__add-button"></button>
+                <p class="profile__subtitle"></p>
+                <button type="button" title="Новое место" class="profile__add-button"></button>
 
             </section>
 
@@ -99,7 +98,7 @@
                     </fieldset>
 
                     <button type="submit" id="popup-button-gallery" class="popup__button"
-                        title="Сохранить изменения">Сохранить</button>
+                        title="Сохранить изменения">Создать</button>
 
                 </form>
 
@@ -160,15 +159,11 @@
             <img class="gallery__image" src="#" alt="#">
             <h2 class="gallery__text"></h2>
             <button class="gallery__like" type="button"></button>
-            <p class="gallery__like-counter">0</p>
+            <p class="gallery__like-counter"></p>
 
         </div>
 
     </template>
-
-
-    <!--<script type="module" src="./src/index.js"></script>-->
-
 
 </body>
 
