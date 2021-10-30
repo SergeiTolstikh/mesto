@@ -93,16 +93,15 @@ applyConfirm.setEventListeners();
 
 
 //
-
-
-
-//
-api.getInitialCards()
-  .then(result => { cardsSection.renderItems(result) })
-  .catch(err => console.log(`Ошибка при получении карточек ${err}`))
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([resuserinfo, resinitialcards]) => { cardsSection.renderItems(resinitialcards)
+    userId = resuserinfo._id;
+    userInfo.setUserInfo({ nameProfile: resuserinfo.name, aboutProfile: resuserinfo.about });
+    userInfo.setUserAvatar(resuserinfo.avatar); })
+    .catch(err => console.log(`Ошибка при получении карточек и профиля ${err}`))
 ///
 
-
+//
 const cardsSection = new Section({
   renderer: item => {
     const isOwner = item.owner._id === userId;
@@ -114,8 +113,6 @@ const cardsSection = new Section({
 }, galleryContainer);
 ///
 
-
-
 //Открыть попап просмотра фото в отдельном окне
 const popupWithImage = new PopupWithImage(galleryOverlay)
 popupWithImage.setEventListeners();
@@ -124,13 +121,7 @@ popupWithImage.setEventListeners();
 //
 const userInfo = new Userinfo({ profileNameSelector: profileTitle, profileDescriptionSelector: profileSubtitle, profileAvatarSelector: avatarPicture });
 ///
-api.getUserInfo()
-  .then(result => {
-    userId = result._id;
-    userInfo.setUserInfo({ nameProfile: result.name, aboutProfile: result.about });
-    userInfo.setUserAvatar(result.avatar);
-  })
-  .catch(err => console.log(`Ошибка при получении профиля ${err}`));
+
 //Создаем объекты класса Popup
 const profileEditPopup = new PopupWithForm(profilePopup, (inputValues) => {
   api.patchUserInfo(inputValues)
