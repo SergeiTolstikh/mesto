@@ -6,12 +6,12 @@ export default class PopupWithImage extends Popup {
         super(popupElement);
     }
 
-    open() {
-        const image = document.querySelector('.popup__overlay-picture');
-        image.setAttribute("src", this.src);
-        image.setAttribute("alt", this.alt);
+    open(link, name) {
+        const image = this._popupElement.querySelector('.popup__overlay-picture');
         const imageName = this._popupElement.querySelector('.popup__overlay-picture-name');
-        imageName.textContent = this.alt;
+        image.setAttribute("src", link);
+        image.setAttribute("alt", name);
+        imageName.textContent = name;
         super.open();
     }
 }

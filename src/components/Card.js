@@ -105,6 +105,7 @@ export default class Card {
         this._imageElement.src = this._link;
         this._imageElement.alt = this._name;
         this._setCardEventListeners();
+      
 
         this._setlikeCounter();
         this._checkOwner()

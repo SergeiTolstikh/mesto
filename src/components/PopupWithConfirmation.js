@@ -5,21 +5,24 @@ export default class PopupWithConfirmation extends Popup {
         this._form = this._popupElement.querySelector('.popup__form');
     }
 
-    open() {
+    open(confirmationDelete) {
         super.open();
+        this._form.addEventListener('submit', (evt) => {
+            confirmationDelete(evt)
+            evt.preventDefault();
+            console.log("повесил слушатель")
+        });
     }
 
     close() {
-        this._form.reset();
-        return super.close();
+        super.close();
+        function rrr() {
+            return console.log('выполнено удаление')
+        }
+        rrr()
     }
 
-    setEventListeners(confirmationDelete) {
+    setEventListeners() {
         super.setEventListeners();
-        this._form.addEventListener('submit', (evt) => {
-            evt.preventDefault();
-            confirmationDelete(evt)
-            
-        });
     }
 }
