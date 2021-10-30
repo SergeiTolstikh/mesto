@@ -13,14 +13,6 @@ export default class PopupWithForm extends Popup {
         return super.close();
     }
 
-    getSubmitText() {
-        this._popupButtonSubmit.textContent = 'Сохранить'
-    }
-
-    getSubmitTextPopupGallery() {
-        this._popupButtonSubmit.textContent = 'Создать'
-    }
-
     _getInputValues() {
         this._inputValues = {};
         this._formInputsList.forEach(inputEl => {

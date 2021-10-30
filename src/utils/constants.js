@@ -32,9 +32,9 @@ export const config = {
   export const profilePopupForm = profilePopup.querySelector('#profile-popup-form');
   export const nameProfileInput = document.querySelector('.popup__input_item_name-profile-input');//переменная строки ввода "Имя"
   export const aboutProfileInput = document.querySelector('.popup__input_item_about-profile-input');//переменная строки ввода "О себе"
-  /*export const submitAvatar = document.querySelector('#popup-button-avatar')
+  export const submitAvatar = document.querySelector('#popup-button-avatar')
   export const submitGallery = document.querySelector('#popup-button-gallery')
-  export const submitProfile = document.querySelector('#popup-button-profile')*/
+  export const submitProfile = document.querySelector('#popup-button-profile')
   ///
   
   //Попап Галереи

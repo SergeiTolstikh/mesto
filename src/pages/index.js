@@ -24,7 +24,10 @@ import {
   galleryPopup,
   galleryPopupForm,
   galleryOverlay,
-  confirmPopup
+  confirmPopup,
+  submitGallery,
+  submitAvatar,
+  submitProfile
 } from '../utils/constants.js';
 
 //
@@ -62,7 +65,7 @@ function createNewCard(element, owner, isLiked) {
         })
         .catch(err => console.log(`Ошибка при удалении карточки ${err}`));
     });
-    
+
   }
 
   function handleLikeClick() {
@@ -136,7 +139,7 @@ const profileEditPopup = new PopupWithForm(profilePopup, (inputValues) => {
       userInfo.setUserInfo({ nameProfile: result.name, aboutProfile: result.about })
     })
     .catch(err => console.log(`Ошибка при обновлении профиля ${err}`))
-    .finally(() => { profileEditPopup.getSubmitText() })
+    .finally(() => { submitProfile.textContent = "Сохранить" })
 });
 profileEditPopup.setEventListeners();
 ///
@@ -149,7 +152,7 @@ const avatarEditPicture = new PopupWithForm(popupAvatar, (inputValues) => {
       avatarPicture.src = result.avatar
     })
     .catch(err => console.log(`Ошибка при обновлении аватара ${err}`))
-    .finally(() => { avatarEditPicture.getSubmitText() })
+    .finally(() => { submitAvatar.textContent = "Сохранить" })
 });
 avatarEditPicture.setEventListeners();
 ///
@@ -162,7 +165,7 @@ const addElementPopup = new PopupWithForm(galleryPopup, (item) => {
       cardsSection.setItem(createNewCard({ name: result.name, link: result.link, id: result._id, likes: result.likes.length }, true), "prepend")
     })
     .catch(err => console.log(`Ошибка при добавлении карточки ${err}`))
-    .finally(() => { addElementPopup.getSubmitTextPopupGallery() })
+    .finally(() => { submitGallery.textContent = "Создать" })
 })
 addElementPopup.setEventListeners();
 ///

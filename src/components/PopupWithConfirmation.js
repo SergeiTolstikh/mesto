@@ -14,14 +14,6 @@ export default class PopupWithConfirmation extends Popup {
         });
     }
 
-    close() {
-        super.close();
-        function rrr() {
-            return console.log('выполнено удаление')
-        }
-        rrr()
-    }
-
     setEventListeners() {
         super.setEventListeners();
     }
