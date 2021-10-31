@@ -27,7 +27,9 @@ import {
   confirmPopup,
   submitGallery,
   submitAvatar,
-  submitProfile
+  submitProfile,
+  userData,
+  avatarProfileInput
 } from '../utils/constants.js';
 
 //
@@ -91,16 +93,19 @@ function createNewCard(element, owner, isLiked) {
 const applyConfirm = new PopupWithConfirmation(confirmPopup)
 applyConfirm.setEventListeners();
 
-
+const userInfo = new Userinfo(userData);
 //
 Promise.all([api.getUserInfo(), api.getInitialCards()])
-  .then(([resuserinfo, resinitialcards]) => { cardsSection.renderItems(resinitialcards)
+  .then(([resuserinfo, resinitialcards]) => {
+    //console.log(resuserinfo.avatar)
     userId = resuserinfo._id;
-    userInfo.setUserInfo({ nameProfile: resuserinfo.name, aboutProfile: resuserinfo.about });
-    userInfo.setUserAvatar(resuserinfo.avatar); })
-    .catch(err => console.log(`Ошибка при получении карточек и профиля ${err}`))
+    userInfo.setUserInfo(resuserinfo);
+    //userInfo.setUserAvatar(resuserinfo.avatar);
+    cardsSection.renderItems(resinitialcards)
+  })
+  .catch(err => console.log(`Ошибка при получении карточек и профиля ${err}`))
 ///
-
+console.log(api.getUserInfo())
 //
 const cardsSection = new Section({
   renderer: item => {
@@ -119,7 +124,7 @@ popupWithImage.setEventListeners();
 ///
 
 //
-const userInfo = new Userinfo({ profileNameSelector: profileTitle, profileDescriptionSelector: profileSubtitle, profileAvatarSelector: avatarPicture });
+
 ///
 
 //Создаем объекты класса Popup
@@ -127,7 +132,7 @@ const profileEditPopup = new PopupWithForm(profilePopup, (inputValues) => {
   api.patchUserInfo(inputValues)
     .then(result => {
       profileEditPopup.close();
-      userInfo.setUserInfo({ nameProfile: result.name, aboutProfile: result.about })
+      userInfo.setUserInfo(result)
     })
     .catch(err => console.log(`Ошибка при обновлении профиля ${err}`))
     .finally(() => { submitProfile.textContent = "Сохранить" })
@@ -138,10 +143,19 @@ profileEditPopup.setEventListeners();
 //
 const avatarEditPicture = new PopupWithForm(popupAvatar, (inputValues) => {
   api.patchUserAvatar(inputValues)
-    .then(result => {
+    /*.then(result => {
       avatarEditPicture.close();
       avatarPicture.src = result.avatar
+    })*/
+
+    .then(result => {
+      //console.log(api.patchUserAvatar)
+      avatarEditPicture.close();
+      userInfo.setUserInfo(result)
     })
+
+
+
     .catch(err => console.log(`Ошибка при обновлении аватара ${err}`))
     .finally(() => { submitAvatar.textContent = "Сохранить" })
 });
@@ -166,7 +180,8 @@ profileEditButton.addEventListener('click', () => {
   profileFormValidator.clearInputItems();
   const profileData = userInfo.getUserInfo();
   nameProfileInput.value = profileData.name;
-  aboutProfileInput.value = profileData.description;
+  aboutProfileInput.value = profileData.job;
+  //avatarProfileInput.value = profileData.avatar
   profileEditPopup.open();
 });
 ///
