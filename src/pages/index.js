@@ -54,12 +54,12 @@ const api = new Api({
 function createNewCard(element, owner, isLiked) {
   const card = new Card(element, owner, isLiked, cardSelector, (img, name) => { popupWithImage.open(img, name) }, handleOpenConfirmPopup, handleLikeClick);
   console.log(card)
-  function handleOpenConfirmPopup(evt) {
+  function handleOpenConfirmPopup(_id) {
     applyConfirm.open(() => {
       api.deleteCard(card._id)
         .then(() => {
           applyConfirm.close()
-          card.delCard(evt)
+          card.remove()
         })
         .catch(err => console.log(`Ошибка при удалении карточки ${err}`));
     });
@@ -83,8 +83,12 @@ function createNewCard(element, owner, isLiked) {
     }
   }
   return card.createCard();
+
+  
 }
 ///
+//console.log()
+
 const applyConfirm = new PopupWithConfirmation(confirmPopup)
 applyConfirm.setEventListeners();
 
@@ -92,11 +96,11 @@ const userInfo = new Userinfo(userData);
 //
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([resuserinfo, resinitialcards]) => {
-    //console.log(resuserinfo.avatar)
+    console.log(resinitialcards)
 
     userInfo.getUserInfo().userId = resuserinfo._id;
     userInfo.setUserInfo(resuserinfo);
-    //console.log(userInfo.itemId)
+    console.log(resinitialcards[0])
     //userInfo.setUserAvatar(resuserinfo.avatar);
     cardsSection.renderItems(resinitialcards)
   })
@@ -111,7 +115,7 @@ const cardsSection = new Section({
     const isLiked = item.likes.some(liker => {
       return liker._id === userInfo._itemId;
     });
-    cardsSection.setItem(createNewCard({ name: item.name, link: item.link, id: item._id, likes: item.likes.length }, isOwner, isLiked), "append");
+    cardsSection.setItem(createNewCard({ name: item.name, link: item.link, _id: item._id, likes: item.likes.length }, isOwner, isLiked), "append");
   }
 }, galleryContainer);
 ///
