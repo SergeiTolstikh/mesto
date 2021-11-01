@@ -5,7 +5,6 @@ export default class Card {
         this._link = data.link;
         this._id = data.id;
         this._likes = data.likes;
-
         this._owner = owner;
         this._isLiked = isLiked;
 
@@ -19,12 +18,6 @@ export default class Card {
     _getTemplate() {
         const cardElement = this._cardSelector.content.querySelector('.gallery__card').cloneNode(true);
         return cardElement;
-    }
-    ///
-
-    //
-    getId() {
-        return this._id;
     }
     ///
 
@@ -105,7 +98,7 @@ export default class Card {
         this._imageElement.src = this._link;
         this._imageElement.alt = this._name;
         this._setCardEventListeners();
-      
+
 
         this._setlikeCounter();
         this._checkOwner()
