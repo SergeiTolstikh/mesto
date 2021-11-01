@@ -8,7 +8,7 @@ export default class PopupWithConfirmation extends Popup {
     open(confirmationDelete) {
         super.open();
         this._form.addEventListener('submit', (evt) => {
-            confirmationDelete(evt)
+            confirmationDelete()
             evt.preventDefault();
             console.log("повесил слушатель")
         });

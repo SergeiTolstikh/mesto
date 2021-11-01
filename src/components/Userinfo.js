@@ -9,7 +9,7 @@ export default class UserInfo {
   };
 
   setUserInfo(item) {
-      //this._itemId = item._id
+      this._itemId = item._id
       this._profileName.textContent = item.name;
       this._profileJob.textContent = item.about;
       this._profileAvatar.src = item.avatar;
@@ -20,7 +20,7 @@ export default class UserInfo {
           name: this._profileName.textContent,
           job: this._profileJob.textContent,
           avatar: this._profileAvatar.src,
-          //userId: this._itemId
+          userId: this._itemId
       };
   };
 };

@@ -44,10 +44,6 @@ avatarFormValidator.enableValidation();//валидация попап ават�
 ///
 const cardSelector = document.querySelector('.gallery-template');
 
-
-
-let userId = '';//
-
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1',
   groupId: 'cohort-28',
@@ -57,13 +53,13 @@ const api = new Api({
 //создает экземпляр класса и возвращает карточку
 function createNewCard(element, owner, isLiked) {
   const card = new Card(element, owner, isLiked, cardSelector, (img, name) => { popupWithImage.open(img, name) }, handleOpenConfirmPopup, handleLikeClick);
-
-  function handleOpenConfirmPopup(evt) {
+  console.log(card)
+  function handleOpenConfirmPopup(_id) {
     applyConfirm.open(() => {
-      api.deleteCard(card.getId())
+      api.deleteCard(card._id)
         .then(() => {
           applyConfirm.close()
-          card.delCard(evt)
+          card.remove()
         })
         .catch(err => console.log(`Ошибка при удалении карточки ${err}`));
     });
@@ -73,23 +69,26 @@ function createNewCard(element, owner, isLiked) {
   function handleLikeClick() {
     if (card.getLikeState()) {
 
-      api.deleteCardLike(card.getId())
+      api.deleteCardLike(card._id)
         .then(result => {
           card.unlikeCard(result.likes.length);
         })
         .catch(err => console.log(`Ошибка при снятии лайка ${err}`));
     } else {
-      api.putCardLike(card.getId())
+      api.putCardLike(card._id)
         .then(result => {
           card.likeCard(result.likes.length);
         })
         .catch(err => console.log(`Ошибка при отправке лайка ${err}`));
     }
   }
-
   return card.createCard();
+
+  
 }
 ///
+//console.log()
+
 const applyConfirm = new PopupWithConfirmation(confirmPopup)
 applyConfirm.setEventListeners();
 
@@ -97,23 +96,26 @@ const userInfo = new Userinfo(userData);
 //
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([resuserinfo, resinitialcards]) => {
-    //console.log(resuserinfo.avatar)
-    userId = resuserinfo._id;
+    console.log(resinitialcards)
+
+    userInfo.getUserInfo().userId = resuserinfo._id;
     userInfo.setUserInfo(resuserinfo);
+    console.log(resinitialcards[0])
     //userInfo.setUserAvatar(resuserinfo.avatar);
     cardsSection.renderItems(resinitialcards)
   })
   .catch(err => console.log(`Ошибка при получении карточек и профиля ${err}`))
 ///
-console.log(api.getUserInfo())
+
 //
 const cardsSection = new Section({
   renderer: item => {
-    const isOwner = item.owner._id === userId;
+    const isOwner = item.owner._id === userInfo._itemId;
+    //console.log(userInfo._itemId)
     const isLiked = item.likes.some(liker => {
-      return liker._id === userId;
+      return liker._id === userInfo._itemId;
     });
-    cardsSection.setItem(createNewCard({ name: item.name, link: item.link, id: item._id, likes: item.likes.length }, isOwner, isLiked), "append");
+    cardsSection.setItem(createNewCard({ name: item.name, link: item.link, _id: item._id, likes: item.likes.length }, isOwner, isLiked), "append");
   }
 }, galleryContainer);
 ///
@@ -121,10 +123,6 @@ const cardsSection = new Section({
 //Открыть попап просмотра фото в отдельном окне
 const popupWithImage = new PopupWithImage(galleryOverlay)
 popupWithImage.setEventListeners();
-///
-
-//
-
 ///
 
 //Создаем объекты класса Popup
@@ -143,19 +141,10 @@ profileEditPopup.setEventListeners();
 //
 const avatarEditPicture = new PopupWithForm(popupAvatar, (inputValues) => {
   api.patchUserAvatar(inputValues)
-    /*.then(result => {
-      avatarEditPicture.close();
-      avatarPicture.src = result.avatar
-    })*/
-
     .then(result => {
-      //console.log(api.patchUserAvatar)
       avatarEditPicture.close();
       userInfo.setUserInfo(result)
     })
-
-
-
     .catch(err => console.log(`Ошибка при обновлении аватара ${err}`))
     .finally(() => { submitAvatar.textContent = "Сохранить" })
 });
@@ -166,8 +155,9 @@ avatarEditPicture.setEventListeners();
 const addElementPopup = new PopupWithForm(galleryPopup, (item) => {
   api.postNewCard(item)
     .then(result => {
+      console.log(result)
       addElementPopup.close();
-      cardsSection.setItem(createNewCard({ name: result.name, link: result.link, id: result._id, likes: result.likes.length }, true), "prepend")
+      cardsSection.setItem(createNewCard({ likes: result.likes.length, id: result._id, name: result.name, link: result.link }, true), "prepend")
     })
     .catch(err => console.log(`Ошибка при добавлении карточки ${err}`))
     .finally(() => { submitGallery.textContent = "Создать" })
