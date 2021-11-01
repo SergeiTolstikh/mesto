@@ -10,9 +10,6 @@ import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import {
   config,
   popupAvatar,
-  avatarPicture,
-  profileTitle,
-  profileSubtitle,
   profileEditAvatar,
   profileEditButton,
   buttonAddPlus,
@@ -28,8 +25,7 @@ import {
   submitGallery,
   submitAvatar,
   submitProfile,
-  userData,
-  avatarProfileInput
+  userData
 } from '../utils/constants.js';
 
 //
@@ -52,20 +48,13 @@ const api = new Api({
 
 //создает экземпляр класса и возвращает карточку
 function createNewCard(element, owner, isLiked) {
-  const card = new Card(element, owner, isLiked, cardSelector, (img, name) => { popupWithImage.open(img, name) }, handleOpenConfirmPopup, handleLikeClick);
-  console.log(card)
-  function handleOpenConfirmPopup(_id) {
-    applyConfirm.open(() => {
-      api.deleteCard(card._id)
-        .then(() => {
-          applyConfirm.close()
-          card.remove()
-        })
-        .catch(err => console.log(`Ошибка при удалении карточки ${err}`));
-    });
+  const card = new Card(element, owner, isLiked, cardSelector, (img, name) => { popupWithImage.open(img, name) }, {
+    handleOpenConfirmPopup: (id, elem) => {
+      applyConfirm.open(id, elem);
+    }
+  }, handleLikeClick);
 
-  }
-
+  //Лайки
   function handleLikeClick() {
     if (card.getLikeState()) {
 
@@ -83,25 +72,33 @@ function createNewCard(element, owner, isLiked) {
     }
   }
   return card.createCard();
-
-  
 }
 ///
-//console.log()
 
-const applyConfirm = new PopupWithConfirmation(confirmPopup)
+//Попап подтверждения удаления карточки
+const applyConfirm = new PopupWithConfirmation(confirmPopup, {
+  submit: (cardId, elem) => {
+    api.deleteCard(cardId).then((result) => {
+      if (result) {
+        elem.remove();
+        applyConfirm.close();
+      }
+    })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+});
 applyConfirm.setEventListeners();
+///
 
+//
 const userInfo = new Userinfo(userData);
 //
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([resuserinfo, resinitialcards]) => {
-    console.log(resinitialcards)
-
     userInfo.getUserInfo().userId = resuserinfo._id;
     userInfo.setUserInfo(resuserinfo);
-    console.log(resinitialcards[0])
-    //userInfo.setUserAvatar(resuserinfo.avatar);
     cardsSection.renderItems(resinitialcards)
   })
   .catch(err => console.log(`Ошибка при получении карточек и профиля ${err}`))
@@ -111,7 +108,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()])
 const cardsSection = new Section({
   renderer: item => {
     const isOwner = item.owner._id === userInfo._itemId;
-    //console.log(userInfo._itemId)
     const isLiked = item.likes.some(liker => {
       return liker._id === userInfo._itemId;
     });
@@ -138,7 +134,7 @@ const profileEditPopup = new PopupWithForm(profilePopup, (inputValues) => {
 profileEditPopup.setEventListeners();
 ///
 
-//
+//Попап изменить аватар
 const avatarEditPicture = new PopupWithForm(popupAvatar, (inputValues) => {
   api.patchUserAvatar(inputValues)
     .then(result => {
@@ -151,13 +147,12 @@ const avatarEditPicture = new PopupWithForm(popupAvatar, (inputValues) => {
 avatarEditPicture.setEventListeners();
 ///
 
-//
+//Попвп добавить новую карточку
 const addElementPopup = new PopupWithForm(galleryPopup, (item) => {
   api.postNewCard(item)
     .then(result => {
-      console.log(result)
       addElementPopup.close();
-      cardsSection.setItem(createNewCard({ likes: result.likes.length, id: result._id, name: result.name, link: result.link }, true), "prepend")
+      cardsSection.setItem(createNewCard({ name: result.name, link: result.link, _id: result._id, likes: result.likes.length }, true), "prepend")
     })
     .catch(err => console.log(`Ошибка при добавлении карточки ${err}`))
     .finally(() => { submitGallery.textContent = "Создать" })
@@ -170,8 +165,7 @@ profileEditButton.addEventListener('click', () => {
   profileFormValidator.clearInputItems();
   const profileData = userInfo.getUserInfo();
   nameProfileInput.value = profileData.name;
-  aboutProfileInput.value = profileData.job;
-  //avatarProfileInput.value = profileData.avatar
+  aboutProfileInput.value = profileData.work;
   profileEditPopup.open();
 });
 ///

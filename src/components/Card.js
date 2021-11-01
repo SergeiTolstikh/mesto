@@ -1,6 +1,5 @@
 export default class Card {
-
-    constructor(data, owner, isLiked, cardSelector, handleCardClick, handleOpenConfirmPopup, handleLikeClick) {
+    constructor(data, owner, isLiked, cardSelector, handleCardClick, { handleOpenConfirmPopup }, handleLikeClick) {
         this._name = data.name;
         this._link = data.link;
         this._id = data._id;
@@ -27,15 +26,12 @@ export default class Card {
     }
     ///
 
-    //
-    delCard(evt) {
-        evt.target.closest(".gallery__card").remove();
-    }
-    ///
+    //метод удалить карточку
     remove() {
         this._newCardElement.remove();
         this._newCardElement = null;
     }
+    ///
 
     //
     likeCard(likesNumber) {
@@ -102,13 +98,9 @@ export default class Card {
         this._imageElement.src = this._link;
         this._imageElement.alt = this._name;
         this._setCardEventListeners();
-
-        console.log(this._newCardElement)
         this._setlikeCounter();
         this._checkOwner()
         return this._newCardElement;
-
     }
-
 }   ///
 

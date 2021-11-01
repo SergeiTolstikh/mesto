@@ -7,13 +7,19 @@ export const config = {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__error_visible'
   }
+
+  export const userData = {
+    name: '.profile__title',
+    work: '.profile__subtitle',
+    avatar:'.profile__image'
+};
   ///
   
   //Профиль
   export const popupAvatar = document.querySelector('#popup-avatar');//попап аватара
-  export const avatarPicture = document.querySelector('.profile__image');//картинка аватара
-  export const profileTitle = document.querySelector('.profile__title');//наименование профиля
-  export const profileSubtitle = document.querySelector('.profile__subtitle');//о профиле
+  //export const avatarPicture = document.querySelector('.profile__image');//картинка аватара
+  //export const profileTitle = document.querySelector('.profile__title');//наименование профиля
+  //export const profileSubtitle = document.querySelector('.profile__subtitle');//о профиле
   export const profileEditAvatar = document.querySelector('.profile__edit-avatar');//переменная кнопки редактирования картинки аватара
   export const profileEditButton = document.querySelector('.profile__edit-button');//переменная кнопки редактирования профиля
   
@@ -50,10 +56,3 @@ export const config = {
   //Попап подтвердить удаление карточки
   export const confirmPopup = document.querySelector('#popup-delete-confirm');
   ///
-  
-  //
-  export const userData = {
-    name: '.profile__title',
-    job: '.profile__subtitle',
-    avatar:'.profile__image'
-};
